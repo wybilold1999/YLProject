@@ -15,8 +15,8 @@ android {
         multiDexEnabled true
 
         manifestPlaceholders = [
-                XG_ACCESS_ID:"2100281238",
-                XG_ACCESS_KEY : "AT46B9H1IM7E"
+                XG_ACCESS_ID:"2100282177",
+                XG_ACCESS_KEY : "AI5L943WH7HB"
         ]
 
     }
