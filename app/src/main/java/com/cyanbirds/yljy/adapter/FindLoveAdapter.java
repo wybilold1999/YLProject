@@ -83,6 +83,9 @@ public class FindLoveAdapter extends
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (position < 0) {
+            return;
+        }
         if(holder instanceof ItemViewHolder){
             ClientUser clientUser = mClientUsers.get(position);
             if(clientUser == null){
