@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:fancy="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="100dp"
+			android:background="#fff"
+			android:gravity="center_vertical"
+			android:orientation="vertical"
+			android:paddingLeft="50dp">
+
+			<TextView
+				android:id="@+id/tv_money"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:drawableLeft="@mipmap/gold"
+				android:drawablePadding="5dp"
+				android:gravity="center_vertical"
+				android:text="账户余额"
+				android:textColor="@color/gray_text"
+				android:textSize="14sp"/>
+
+			<TextView
+				android:id="@+id/money"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="30dp"
+				android:text="0.0元"
+				android:textColor="@color/body_text_1"
+				android:textSize="40sp"/>
+
+		</LinearLayout>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="20dp"
+			android:layout_marginLeft="30dp"
+			android:layout_marginRight="30dp"
+			android:layout_marginTop="20dp"
+			android:gravity="center_horizontal"
+			android:text="提现申请审核成功后，款项将于3个工作日内汇出，具体到账时间视银行而定。为了您能成功提现，请填写真实的提现资料"
+			android:textColor="@color/gray_text"
+			android:textSize="12sp"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:layout_marginLeft="20dp"
+					android:text="收款人"
+					android:textSize="16sp"/>
+
+				<EditText
+					android:id="@+id/edt_name"
+					android:layout_width="match_parent"
+					android:layout_height="40dp"
+					android:layout_gravity="center_vertical"
+					android:layout_marginLeft="45dp"
+					android:layout_marginRight="30dp"
+					android:background="@drawable/im_input_bg"
+					android:drawablePadding="5dip"
+					android:gravity="left|center_vertical"
+					android:hint="必填(必须是开户行本人)"
+					android:padding="10dip"
+					android:singleLine="true"
+					android:textColorHint="@color/gray_text"
+					android:textSize="14sp"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:layout_marginLeft="20dp"
+					android:text="开户银行"
+					android:textSize="16sp"/>
+
+				<EditText
+					android:id="@+id/edt_bank"
+					android:layout_width="match_parent"
+					android:layout_height="40dp"
+					android:layout_gravity="center_vertical"
+					android:layout_marginLeft="30dp"
+					android:layout_marginRight="30dp"
+					android:background="@drawable/im_input_bg"
+					android:drawablePadding="5dip"
+					android:gravity="left|center_vertical"
+					android:hint="必填(例如：中国建设银行)"
+					android:padding="10dip"
+					android:singleLine="true"
+					android:textColorHint="@color/gray_text"
+					android:textSize="14sp"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:layout_marginLeft="20dp"
+					android:text="银行账号"
+					android:textSize="16sp"/>
+
+				<EditText
+					android:id="@+id/edt_bank_no"
+					android:layout_width="match_parent"
+					android:layout_height="40dp"
+					android:layout_gravity="center_vertical"
+					android:layout_marginLeft="30dp"
+					android:layout_marginRight="30dp"
+					android:background="@drawable/im_input_bg"
+					android:drawablePadding="5dip"
+					android:gravity="left|center_vertical"
+					android:hint="必填"
+					android:padding="10dip"
+					android:singleLine="true"
+					android:textColorHint="@color/gray_text"
+					android:textSize="14sp"/>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+		<mehdi.sakout.fancybuttons.FancyButton
+			android:id="@+id/btn_get"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="30dp"
+			android:layout_marginRight="30dp"
+			android:layout_marginTop="20dp"
+			fancy:fb_defaultColor="@color/colorPrimary"
+			fancy:fb_focusColor="@color/colorAccent"
+			fancy:fb_radius="5dp"
+			fancy:fb_text="提现"
+			fancy:fb_textColor="#ffffffff"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:gravity="center_horizontal"
+			android:text="@string/get_banlance"
+			android:textColor="@color/gray_text"
+			android:textSize="12sp"/>
+
+	</LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="15dp"
+				android:layout_marginBottom="15dp"
+	android:orientation="horizontal">
+
+	<FrameLayout
+		android:id="@+id/fl_gold_ic"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<ImageView
+			android:id="@+id/iv_gold"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10dp"
+			android:layout_alignParentLeft="true"
+			android:layout_centerVertical="true"
+			android:src="@mipmap/gold"/>
+
+		<ImageView
+			android:id="@+id/iv_hot"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@mipmap/icon_hot"
+			android:layout_gravity="top|right"
+			android:visibility="gone"/>
+	</FrameLayout>
+
+	<TextView
+		android:id="@+id/gold_num"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10dp"
+		android:layout_toRightOf="@id/fl_gold_ic"
+		android:layout_centerVertical="true"
+		android:textSize="14sp"
+		android:text="300"/>
+
+	<TextView
+		android:id="@+id/preferential"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="2dp"
+		android:layout_toRightOf="@id/gold_num"
+		android:layout_centerVertical="true"
+		android:text=""
+		android:textColor="@color/colorPrimary"
+		android:textSize="12sp"/>
+
+	<CheckBox
+		android:id="@+id/select"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
+		android:layout_marginRight="10dp"
+		android:button="@drawable/checkmark_selector"
+		android:padding="10dp" />
+
+	<TextView
+		android:id="@+id/price"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="2dp"
+		android:layout_toLeftOf="@id/select"
+		android:layout_marginRight="30dp"
+		android:layout_centerVertical="true"
+		android:text="￥30.0"
+		android:textSize="12sp"/>
+
+
+</RelativeLayout>

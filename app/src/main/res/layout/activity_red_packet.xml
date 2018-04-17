@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:fancy="http://schemas.android.com/apk/res-auto"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="#EBEBEB"
+			  android:orientation="vertical">
+
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar_actionbar"
+		android:layout_width="match_parent"
+		android:layout_height="?actionBarSize"
+		android:layout_alignParentTop="true"
+		android:background="#e95f38"
+		fancy:contentInsetStart="?actionBarInsetStart"
+		fancy:popupTheme="@style/ActionBarPopupThemeOverlay"
+		fancy:theme="@style/ActionBarThemeOverlay"
+		fancy:titleTextAppearance="@style/ActionBar.TitleText"/>
+
+	<TextView
+		android:id="@+id/limit"
+		android:layout_width="match_parent"
+		android:layout_height="30dp"
+		android:gravity="center"
+		android:textSize="12sp"
+		android:text="@string/single_red_packet_limit"
+		android:textColor="@color/send_money_limit_text"
+		android:background="@color/send_money_limit_bg"
+		android:visibility="invisible"/>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="60dp"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:background="@android:color/white">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:paddingLeft="10dp"
+			android:text="@string/single_red_packet"
+			android:textColor="@color/body_text_1"
+			android:textSize="16sp"/>
+
+		<TextView
+			android:id="@+id/unit"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:paddingRight="10dp"
+			android:text="元"
+			android:textColor="@color/body_text_1"
+			android:textSize="16sp"/>
+
+		<EditText
+			android:id="@+id/read_packet_amount"
+			android:layout_width="100dp"
+			android:layout_height="wrap_content"
+			android:gravity="right"
+			android:maxLength="6"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="10dp"
+			android:layout_toLeftOf="@id/unit"
+			android:background="@null"
+			android:hint="0.00"
+			android:inputType="numberDecimal"
+			android:textColor="@color/body_text_1"
+			android:textColorHint="@color/gray_text"
+			android:textSize="16sp"/>
+
+	</RelativeLayout>
+
+	<TextView
+		android:id="@+id/single_more"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:textSize="12sp"
+		android:textColor="@color/gray_text"/>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="60dp"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="20dp"
+		android:background="@android:color/white">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:paddingLeft="10dp"
+			android:text="@string/feedback"
+			android:textColor="@color/body_text_1"
+			android:textSize="16sp"/>
+
+		<EditText
+			android:id="@+id/blessings"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="10dp"
+			android:background="@null"
+			android:maxLength="15"
+			android:hint="@string/feedback_info"
+			android:paddingRight="10dp"
+			android:textColor="@color/body_text_1"
+			android:textColorHint="@color/gray_text"
+			android:textSize="16sp"/>
+
+	</RelativeLayout>
+
+	<TextView
+		android:id="@+id/money"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp"
+		android:gravity="center_horizontal"
+		android:text="￥0.00"
+		android:textColor="@color/body_text_1"
+		android:textSize="26sp"/>
+
+	<mehdi.sakout.fancybuttons.FancyButton
+		android:id="@+id/btn_send_money"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:layout_marginLeft="30dp"
+		android:layout_marginRight="30dp"
+		android:layout_marginTop="20dp"
+		android:clickable="false"
+		android:enabled="false"
+		fancy:fb_defaultColor="@color/btn_send_money_unenable"
+		fancy:fb_focusColor="@color/btn_send_money_unenable"
+		fancy:fb_radius="2dp"
+		fancy:fb_text="@string/btn_send_money"
+		fancy:fb_textColor="@color/btn_send_money_text"/>
+
+	<LinearLayout
+		android:id="@+id/pay_lay"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:background="@android:color/white"
+		android:layout_marginTop="30dp"
+		android:visibility="gone">
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/divider_height"
+			android:background="@color/divider_color"
+			android:contentDescription="@null"/>
+
+		<RelativeLayout
+			android:id="@+id/alipay_lay"
+			android:layout_width="match_parent"
+			android:layout_height="50dp">
+
+			<ImageView
+				android:id="@+id/iv_alipay_icon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@mipmap/pay_icon_alipay"
+				android:scaleType="centerCrop"
+				android:layout_alignParentLeft="true"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="10dp"/>
+
+			<TextView
+				android:id="@+id/tv_ali_pay"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_toRightOf="@id/iv_alipay_icon"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="10dp"
+				android:text="支付宝"/>
+
+			<ImageView
+				android:id="@+id/iv_recommend"
+				android:layout_width="35dp"
+				android:layout_height="20dp"
+				android:layout_marginLeft="10dp"
+				android:layout_toRightOf="@id/tv_ali_pay"
+				android:layout_centerVertical="true"
+				android:scaleType="fitCenter"
+				android:src="@mipmap/recommend"/>
+
+			<TextView
+				android:id="@+id/alipay_lay_info"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toRightOf="@id/iv_recommend"
+				android:layout_marginLeft="5dp"
+				android:textSize="10sp"
+				android:text="@string/pay_info"
+				android:visibility="gone"/>
+
+			<CheckBox
+				android:id="@+id/select_alipay"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true"
+				android:layout_marginRight="10dp"
+				android:button="@drawable/checkmark_selector"
+				android:padding="10dp" />
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/divider_height"
+				android:layout_alignParentBottom="true"
+				android:layout_marginLeft="@dimen/divider_margin_left"
+				android:background="@color/divider_color"
+				android:contentDescription="@null"/>
+		</RelativeLayout>
+
+		<RelativeLayout
+			android:id="@+id/wechat_lay"
+			android:layout_width="match_parent"
+			android:layout_height="50dp">
+
+			<ImageView
+				android:id="@+id/iv_wechat_icon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@mipmap/pay_icon_wechat"
+				android:scaleType="centerCrop"
+				android:layout_alignParentLeft="true"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="10dp"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_toRightOf="@id/iv_wechat_icon"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="10dp"
+				android:text="微信支付"/>
+
+			<CheckBox
+				android:id="@+id/select_wechatpay"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true"
+				android:layout_marginRight="10dp"
+				android:button="@drawable/checkmark_selector"
+				android:padding="10dp" />
+		</RelativeLayout>
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/divider_height"
+			android:background="@color/divider_color"
+			android:contentDescription="@null"/>
+
+	</LinearLayout>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|center_horizontal"
+		android:textColor="@color/gray_text"
+		android:textSize="12sp"
+		android:text="@string/send_red_packet_success"
+		android:layout_marginTop="30dp"/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|center_horizontal"
+		android:textColor="@color/gray_text"
+		android:textSize="12sp"
+		android:text="@string/send_red_packet_info"/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|center_horizontal"
+		android:textColor="@color/gray_text"
+		android:textSize="12sp"
+		android:text="@string/user_send_red_packet_info"/>
+
+</LinearLayout>

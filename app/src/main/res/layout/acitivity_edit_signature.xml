@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar_actionbar"
+        layout="@layout/toolbar_actionbar_with_headerbar"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_actionbar"
+        app:counterEnabled="true"
+        app:counterMaxLength="150">
+
+        <EditText
+            android:id="@+id/signature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="3"
+            android:gravity="top"
+            android:textColorHint="@color/gray_text"
+            android:textColor="@color/colorPrimary">
+        </EditText>
+
+    </android.support.design.widget.TextInputLayout>
+
+</RelativeLayout>

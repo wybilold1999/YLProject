@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://E:\Android\AndroidProject\YueProject\TanProject.iml" filepath="E:\Android\AndroidProject\YueProject\TanProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/YueProject.iml" filepath="$PROJECT_DIR$/YueProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\Android\AndroidProject\YueProject\app\app.iml" filepath="E:\Android\AndroidProject\YueProject\app\app.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:fancy="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar_actionbar_with_headerbar"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:text="@string/geting_tel_fare"
+                android:textColor="@color/colorPrimary"/>
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btn_get_fare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                fancy:fb_defaultColor="@color/colorPrimary"
+                fancy:fb_focusColor="@color/colorAccent"
+                fancy:fb_radius="5dp"
+                fancy:fb_text="@string/get_tel_fare"
+                fancy:fb_textColor="#ffffffff"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="@string/get_tel_fare_activity"
+                android:textColor="@color/body_text_1"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/get_tel_fare_qualification"
+                android:textColor="@color/body_text_1"/>
+
+            <TextView
+                android:id="@+id/qualification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="购买任意一种100元以上服务即可参与"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/get_tel_fare_rule"
+                android:textColor="@color/body_text_1"/>
+
+            <TextView
+                android:id="@+id/rule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/get_tel_fare_condition"
+                android:textColor="@color/body_text_1"/>
+
+            <TextView
+                android:id="@+id/condition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/get_tel_fare_way"
+                android:textColor="@color/body_text_1"/>
+
+            <TextView
+                android:id="@+id/way"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginTop="30dp"
+                android:text="活动解释权归本公司所有"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

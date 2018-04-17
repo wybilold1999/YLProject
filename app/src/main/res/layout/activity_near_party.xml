@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<include layout="@layout/toolbar_actionbar_with_headerbar"/>
+
+	<android.support.v4.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+			<android.support.v7.widget.CardView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp"
+				android:layout_marginTop="20dp"
+				app:cardBackgroundColor="#fff"
+				app:cardCornerRadius="5dp"
+				app:cardElevation="3dp"
+				app:cardPreventCornerOverlap="true">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:id="@+id/title_1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:text="浪漫七夕，缘来是你"/>
+
+					<com.cyanbirds.yljy.ui.widget.NoScrollGridView
+						android:id="@+id/party_1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="5dp"
+						android:layout_marginLeft="9dp"
+						android:layout_marginTop="8dp"
+						android:horizontalSpacing="2dp"
+						android:numColumns="3"
+						android:verticalSpacing="5dp">
+					</com.cyanbirds.yljy.ui.widget.NoScrollGridView>
+
+				</LinearLayout>
+
+			</android.support.v7.widget.CardView>
+
+			<android.support.v7.widget.CardView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp"
+				android:layout_marginTop="20dp"
+				app:cardBackgroundColor="#fff"
+				app:cardCornerRadius="5dp"
+				app:cardElevation="3dp"
+				app:cardPreventCornerOverlap="true">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:id="@+id/title_2"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:text="我要大声对你说520"/>
+
+					<com.cyanbirds.yljy.ui.widget.NoScrollGridView
+						android:id="@+id/party_2"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="5dp"
+						android:layout_marginLeft="9dp"
+						android:layout_marginTop="8dp"
+						android:numColumns="3"
+						android:verticalSpacing="5dp">
+					</com.cyanbirds.yljy.ui.widget.NoScrollGridView>
+
+				</LinearLayout>
+
+			</android.support.v7.widget.CardView>
+
+			<android.support.v7.widget.CardView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp"
+				android:layout_marginTop="20dp"
+				app:cardBackgroundColor="#fff"
+				app:cardCornerRadius="5dp"
+				app:cardElevation="3dp"
+				app:cardPreventCornerOverlap="true">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:id="@+id/title_3"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:text="浪漫情人节，我们不见不散"/>
+
+					<com.cyanbirds.yljy.ui.widget.NoScrollGridView
+						android:id="@+id/party_3"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="5dp"
+						android:layout_marginLeft="9dp"
+						android:layout_marginTop="8dp"
+						android:numColumns="3"
+						android:verticalSpacing="5dp">
+					</com.cyanbirds.yljy.ui.widget.NoScrollGridView>
+				</LinearLayout>
+
+			</android.support.v7.widget.CardView>
+
+			<android.support.v7.widget.CardView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="20dp"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp"
+				android:layout_marginTop="15dp"
+				android:padding="5dp"
+				app:cardBackgroundColor="#fff"
+				app:cardCornerRadius="5dp"
+				app:cardElevation="3dp"
+				app:cardPreventCornerOverlap="true">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:id="@+id/title_4"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:text="相约元旦，幸福我来牵"/>
+
+					<com.cyanbirds.yljy.ui.widget.NoScrollGridView
+						android:id="@+id/party_4"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="5dp"
+						android:layout_marginLeft="9dp"
+						android:layout_marginTop="8dp"
+						android:numColumns="3"
+						android:verticalSpacing="5dp">
+					</com.cyanbirds.yljy.ui.widget.NoScrollGridView>
+				</LinearLayout>
+
+			</android.support.v7.widget.CardView>
+
+		</LinearLayout>
+	</android.support.v4.widget.NestedScrollView>
+</LinearLayout>

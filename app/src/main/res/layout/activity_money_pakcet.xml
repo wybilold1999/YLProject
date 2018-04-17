@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:app="http://schemas.android.com/apk/res-auto"
+			  android:orientation="vertical"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent">
+
+	<include layout="@layout/toolbar_actionbar_with_headerbar"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginTop="100dp"
+		android:orientation="vertical">
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:drawableTop="@mipmap/my_gold"
+		android:layout_gravity="center_horizontal"
+		android:text="@string/my_money"
+		android:textSize="28sp"/>
+
+	<TextView
+		android:id="@+id/my_money"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="12dp"
+		android:layout_gravity="center_horizontal"
+		android:textSize="48sp"
+		android:text="65.99"/>
+
+	<mehdi.sakout.fancybuttons.FancyButton
+		android:id="@+id/btn_output"
+		android:layout_width="match_parent"
+		android:layout_height="40dp"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginLeft="30dp"
+		android:layout_marginRight="30dp"
+		android:layout_marginTop="20dp"
+		app:fb_defaultColor="@color/colorPrimary"
+		app:fb_focusColor="@color/colorAccent"
+		app:fb_radius="2dp"
+		app:fb_text="@string/ouput_money"
+		app:fb_textColor="#ffffffff"/>
+
+	</LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:app="http://schemas.android.com/apk/res-auto"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical">
+
+	<include
+		layout="@layout/toolbar_actionbar_with_headerbar"/>
+
+	<RelativeLayout
+		android:id="@+id/personal_lay"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="5dp"
+		android:layout_marginBottom="5dp"
+		android:visibility="gone">
+
+		<com.facebook.drawee.view.SimpleDraweeView
+			android:id="@+id/portrait"
+			android:layout_width="60dp"
+			android:layout_height="60dp"
+			android:layout_alignParentLeft="true"
+			android:layout_centerVertical="true"
+			android:layout_marginLeft="20dp"
+			android:contentDescription="@null"
+			app:actualImageScaleType="fitCenter"
+			app:failureImage="@mipmap/default_head"
+			app:placeholderImage="@mipmap/default_head"
+			app:placeholderImageScaleType="fitCenter"
+			app:roundAsCircle="true"/>
+
+		<TextView
+			android:id="@+id/user_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10dp"
+			android:layout_marginTop="10dp"
+			android:layout_toRightOf="@id/portrait"
+			android:textSize="16sp"/>
+
+		<TextView
+			android:id="@+id/age"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_marginLeft="10dp"
+			android:layout_below="@id/user_name"
+			android:layout_toRightOf="@id/portrait"
+			android:text="23岁"
+			android:textColor="@color/gray_text"/>
+
+		<TextView
+			android:id="@+id/occupation"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="5dp"
+			android:layout_marginTop="5dp"
+			android:layout_toRightOf="@id/age"
+			android:layout_below="@id/user_name"
+			android:text="演员"
+			android:textColor="@color/gray_text"/>
+	</RelativeLayout>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="9"
+		android:gravity="center">
+
+		<com.facebook.drawee.view.SimpleDraweeView
+			android:id="@+id/img_queue"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:contentDescription="@null"
+			app:actualImageScaleType="centerCrop"
+			app:failureImage="@mipmap/default_pic"
+			app:failureImageScaleType="centerCrop"
+			app:placeholderImage="@mipmap/default_pic"
+			app:placeholderImageScaleType="centerCrop"
+			app:roundedCornerRadius="0dp"/>
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center|center_horizontal"
+			android:gravity="center"
+			android:src="@mipmap/video_icon_play"/>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="20dp"
+			android:layout_gravity="bottom"
+			android:background="#99000000"
+			android:gravity="center_vertical">
+
+			<TextView
+				android:id="@+id/video_info"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:paddingLeft="5dp"
+				android:paddingRight="5dp"
+				android:textColor="#ffffff"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:id="@+id/rose_num"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:paddingLeft="5dp"
+				android:paddingRight="5dp"
+				android:textColor="#ffffff"
+				android:textSize="12sp"/>
+
+		</RelativeLayout>
+
+	</FrameLayout>
+
+	<TextView
+		android:id="@+id/tv_video_show"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:background="@color/colorPrimary"
+		android:text="TA的视频集"
+		android:textColor="@android:color/white"
+		android:gravity="center_horizontal|center_vertical"
+		android:visibility="gone"/>
+
+
+</LinearLayout>

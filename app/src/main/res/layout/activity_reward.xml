@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="top"
+	android:orientation="vertical">
+
+	<include
+		android:id="@+id/toolbar"
+		layout="@layout/toolbar_actionbar_with_headerbar"/>
+
+	<android.support.v4.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#fff"
+		android:fillViewport="true"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="top"
+			android:orientation="vertical">
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<com.cyanbirds.yljy.ui.widget.LuckyPanView
+					android:id="@+id/id_luckypan"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true"
+					android:padding="30dp"/>
+
+				<ImageView
+					android:id="@+id/id_start_btn"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true"
+					android:src="@mipmap/start"/>
+			</RelativeLayout>
+
+			<TextView
+				android:id="@+id/reward_info"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:paddingLeft="30dp"
+				android:paddingTop="10dp"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="30dp"
+				android:gravity="center_vertical"
+				android:paddingLeft="30dp"
+				android:text="中奖名单:"
+				android:textColor="@color/colorPrimary"
+				android:textSize="12sp"/>
+
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/divider_height"
+				android:background="@color/divider_color"
+				android:contentDescription="@null"/>
+
+			<android.lib.widget.verticalmarqueetextview.VerticalMarqueeTextView
+				android:id="@+id/vertical_text"
+				android:layout_width="match_parent"
+				android:layout_height="100dp"
+				app:marqueeSpeed="10"
+				app:text=""
+				app:textColor="@color/colorPrimary"
+				app:textSize="6dp"/>
+
+		</LinearLayout>
+
+	</android.support.v4.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:app="http://schemas.android.com/apk/res-auto"
+			  android:id="@+id/between_layout"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical">
+
+	<include layout="@layout/toolbar_actionbar_with_headerbar"/>
+
+	<android.support.v4.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/vip_recyclerview"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:scrollbarStyle="outsideOverlay"
+				android:scrollbars="vertical"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="5dp"
+				android:background="@color/gray_text"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:text="一对一红娘特权"
+				android:textColor="@color/body_text_1"
+				android:textSize="18sp"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/divider_height"
+				android:background="@color/gray_background"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:text="1.享有赚钱会员、普通会员所有特权，并拥有10000金币"
+				android:textColor="@color/gray_text"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:text="2.一对一红娘专属服务，安全，真实，有保障"
+				android:textColor="@color/gray_text"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:text="3.对我喜欢的人请求红娘牵线，抢占先机主动选择"
+				android:textColor="@color/gray_text"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:text="4.拓展优质人选库，匹配对象层层甄选，成功率提高9倍"
+				android:textColor="@color/gray_text"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:text="5.优先将您推荐给高质量异性会员"
+				android:textColor="@color/gray_text"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:text="6.寻爱护航多重保障，专属红娘全程指导"
+				android:textColor="@color/gray_text"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="5dp"
+				android:background="@color/gray_text"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:text="金牌红娘"
+				android:textColor="@color/body_text_1"
+				android:textSize="18sp"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/divider_height"
+				android:background="@color/gray_background"/>
+
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/love_recyclerview"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="30dp"
+				android:scrollbarStyle="outsideOverlay"
+				android:scrollbars="vertical"/>
+
+		</LinearLayout>
+
+	</android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

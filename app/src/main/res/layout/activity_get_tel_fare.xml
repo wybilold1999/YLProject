@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:fancy="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar_actionbar_with_headerbar"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp">
+
+        <EditText
+            android:id="@+id/phone_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_get_fare_tel"
+            android:inputType="number"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"
+            android:contentDescription="@null"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btn_get_fare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        fancy:fb_defaultColor="@color/colorPrimary"
+        fancy:fb_focusColor="@color/colorAccent"
+        fancy:fb_radius="5dp"
+        fancy:fb_text="@string/right_now_get"
+        fancy:fb_textColor="#ffffffff"/>
+
+</LinearLayout>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:fancy="http://schemas.android.com/apk/res-auto"
+			  android:orientation="vertical"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent">
+
+	<include layout="@layout/toolbar_actionbar_with_headerbar"/>
+
+	<android.support.v4.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+			<TextView
+				android:id="@+id/identify_state"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:text="@string/identifing"
+				android:textSize="16sp"
+				android:layout_gravity="center_horizontal"
+				android:gravity="center_horizontal"
+				android:visibility="gone"/>
+
+			<LinearLayout
+				android:id="@+id/identify_lay"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				android:visibility="gone">
+
+				<android.support.design.widget.TextInputLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="20dp"
+					android:layout_marginLeft="30dp"
+					android:layout_marginRight="30dp"
+					android:background="@null">
+
+					<EditText
+						android:id="@+id/real_name"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:hint="@string/real_name"
+						android:maxLines="1"
+						android:singleLine="true"
+						android:textSize="16sp"
+						android:textColor="@color/colorPrimary"
+						android:contentDescription="@null"/>
+
+				</android.support.design.widget.TextInputLayout>
+
+				<android.support.design.widget.TextInputLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="30dp"
+					android:layout_marginRight="30dp"
+					android:background="@null">
+
+					<EditText
+						android:id="@+id/identify_id"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:maxLength="18"
+						android:hint="@string/id_card"
+						android:maxLines="1"
+						android:singleLine="true"
+						android:textSize="16sp"
+						android:textColor="@color/colorPrimary"
+						android:contentDescription="@null"/>
+
+				</android.support.design.widget.TextInputLayout>
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:gravity="center_horizontal"
+					android:layout_gravity="center_horizontal"
+					android:text="@string/id_card_img_text"
+					android:textColor="@color/gray_background"
+					android:visibility="gone"/>
+
+				<com.facebook.drawee.view.SimpleDraweeView
+					android:id="@+id/add_img"
+					android:layout_width="100dp"
+					android:layout_height="100dp"
+					android:layout_marginTop="10dp"
+					android:layout_gravity="center_horizontal"
+					android:contentDescription="@null"
+					fancy:actualImageScaleType="fitCenter"
+					fancy:placeholderImage="@mipmap/add_pot"
+					fancy:failureImage="@mipmap/add_pot"
+					fancy:placeholderImageScaleType="fitCenter"
+					fancy:roundedCornerRadius="2dp" />
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:gravity="center_horizontal"
+					android:layout_gravity="center_horizontal"
+					android:text="@string/identify_info"
+					android:textSize="12sp"
+					android:textColor="@color/gray_text"
+					android:visibility="invisible"/>
+
+				<mehdi.sakout.fancybuttons.FancyButton
+					android:id="@+id/btn_submit"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="20dp"
+					android:layout_marginLeft="30dp"
+					android:layout_marginRight="30dp"
+					fancy:fb_defaultColor="@color/colorPrimary"
+					fancy:fb_focusColor="@android:color/white"
+					fancy:fb_radius="5dp"
+					fancy:fb_text="@string/submit"
+					fancy:fb_textColor="#ffffffff"/>
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:layout_marginLeft="30dp"
+					android:layout_marginRight="30dp"
+					android:layout_gravity="center_horizontal"
+					android:gravity="center_horizontal"
+					android:text="@string/upload_identify_tips"
+					android:textColor="@color/body_text_1"
+					android:textSize="14sp"/>
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:layout_marginLeft="30dp"
+					android:layout_marginRight="30dp"
+					android:layout_gravity="left"
+					android:gravity="left"
+					android:text="上传身份认证示例图："
+					android:textColor="@color/body_text_1"
+					android:textSize="14sp"/>
+
+				<ImageView
+					android:layout_width="200dp"
+					android:layout_height="150dp"
+					android:layout_gravity="center_horizontal"
+					android:gravity="center_horizontal"
+					android:scaleType="fitCenter"
+					android:src="@mipmap/case_img"/>
+
+			</LinearLayout>
+
+		</LinearLayout>
+	</android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

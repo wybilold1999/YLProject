@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:app="http://schemas.android.com/apk/res-auto"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical">
+
+	<include layout="@layout/toolbar_actionbar_with_headerbar"/>
+
+	<android.support.v4.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fillViewport="true"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+			<com.facebook.drawee.view.SimpleDraweeView
+				android:id="@+id/portrait"
+				android:layout_width="match_parent"
+				android:layout_height="150dp"
+				android:layout_marginTop="20dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_centerVertical="true"
+				android:contentDescription="@null"
+				app:actualImageScaleType="fitXY"
+				app:failureImage="@mipmap/default_pic"
+				app:placeholderImage="@mipmap/default_pic"
+				app:placeholderImageScaleType="fitXY"
+				app:roundedCornerRadius="0dp"/>
+
+			<TextView
+				android:id="@+id/title"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:text="浪漫七夕，缘来是你"
+				android:textColor="@color/body_text_1"
+				android:textSize="18sp"/>
+
+			<TextView
+				android:id="@+id/time"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:textSize="14sp"
+				android:text="时间：七月初七18：00-22：00"/>
+
+			<TextView
+				android:id="@+id/where"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:textSize="14sp"
+				android:text="地点：广州市区阿萨德发生纠纷辣椒水动力科技阿隆索大幅拉升接待来访卡洛斯的纠纷"/>
+
+			<TextView
+				android:id="@+id/limit_count"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:textSize="14sp"
+				android:text="活动人数：男士：30名：女士：30名"/>
+
+			<TextView
+				android:id="@+id/price_info"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:textSize="14sp"
+				android:text="活动经费：200（用于购买道具、茶水、水果、糕点等）"/>
+
+			<mehdi.sakout.fancybuttons.FancyButton
+				android:id="@+id/btn_attention"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:layout_marginLeft="30dp"
+				android:layout_marginRight="30dp"
+				app:fb_defaultColor="@color/colorPrimary"
+				app:fb_focusColor="@android:color/white"
+				app:fb_radius="5dp"
+				app:fb_text="开始报名"
+				app:fb_textColor="#ffffffff"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"
+				android:text="@string/tv_party_detail"/>
+
+			<TextView
+				android:id="@+id/tv_party_detail"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"
+				android:text="12sp"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"
+				android:text="@string/party_img"/>
+
+			<com.facebook.drawee.view.SimpleDraweeView
+				android:id="@+id/iv_party_1"
+				android:layout_width="match_parent"
+				android:layout_height="220dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_centerVertical="true"
+				android:contentDescription="@null"
+				app:actualImageScaleType="fitXY"
+				app:failureImage="@mipmap/default_pic"
+				app:placeholderImage="@mipmap/default_pic"
+				app:placeholderImageScaleType="fitXY"
+				app:roundedCornerRadius="0dp"/>
+
+			<com.facebook.drawee.view.SimpleDraweeView
+				android:id="@+id/iv_party_2"
+				android:layout_width="match_parent"
+				android:layout_height="220dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_centerVertical="true"
+				android:contentDescription="@null"
+				app:actualImageScaleType="fitXY"
+				app:failureImage="@mipmap/default_pic"
+				app:placeholderImage="@mipmap/default_pic"
+				app:placeholderImageScaleType="fitXY"
+				app:roundedCornerRadius="0dp"/>
+
+			<com.facebook.drawee.view.SimpleDraweeView
+				android:id="@+id/iv_party_3"
+				android:layout_width="match_parent"
+				android:layout_height="220dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_centerVertical="true"
+				android:contentDescription="@null"
+				app:actualImageScaleType="fitXY"
+				app:failureImage="@mipmap/default_pic"
+				app:placeholderImage="@mipmap/default_pic"
+				app:placeholderImageScaleType="fitXY"
+				app:roundedCornerRadius="0dp"/>
+
+			<com.facebook.drawee.view.SimpleDraweeView
+				android:id="@+id/iv_party_4"
+				android:layout_width="match_parent"
+				android:layout_height="220dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_centerVertical="true"
+				android:contentDescription="@null"
+				app:actualImageScaleType="fitXY"
+				app:failureImage="@mipmap/default_pic"
+				app:placeholderImage="@mipmap/default_pic"
+				app:placeholderImageScaleType="fitXY"
+				app:roundedCornerRadius="0dp"/>
+
+			<com.facebook.drawee.view.SimpleDraweeView
+				android:id="@+id/iv_party_5"
+				android:layout_width="match_parent"
+				android:layout_height="220dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_centerVertical="true"
+				android:contentDescription="@null"
+				app:actualImageScaleType="fitXY"
+				app:failureImage="@mipmap/default_pic"
+				app:placeholderImage="@mipmap/default_pic"
+				app:placeholderImageScaleType="fitXY"
+				app:roundedCornerRadius="0dp"/>
+
+			<com.facebook.drawee.view.SimpleDraweeView
+				android:id="@+id/iv_party_6"
+				android:layout_width="match_parent"
+				android:layout_height="220dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginBottom="10dp"
+				android:layout_centerVertical="true"
+				android:contentDescription="@null"
+				app:actualImageScaleType="fitXY"
+				app:failureImage="@mipmap/default_pic"
+				app:placeholderImage="@mipmap/default_pic"
+				app:placeholderImageScaleType="fitXY"
+				app:roundedCornerRadius="0dp"/>
+
+		</LinearLayout>
+	</android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>
