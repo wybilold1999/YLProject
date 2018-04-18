@@ -60,7 +60,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     ImageView weiXinLogin;
     ImageView mSelectMan;
     ImageView mSelectLady;
-    ImageView xmLogin;
 
     /**
      * 相册返回

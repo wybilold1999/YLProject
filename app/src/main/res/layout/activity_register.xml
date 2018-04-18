@@ -122,17 +122,6 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/xm_login"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="30dp"
-                android:clickable="true"
-                android:layout_gravity="right"
-                android:src="@mipmap/milogo"
-                android:visibility="gone"/>
-
-            <ImageView
                 android:id="@+id/weixin_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
