@@ -251,4 +251,8 @@ public interface UserService {
      */
     @GET("buy/getFareActivityInfo")
     Call<ResponseBody> getFareActivityInfo(@Header("token") String token);
+
+    @FormUrlEncoded
+    @POST("user/getPermission")
+    Call<ResponseBody> getPermission(@Field("channel") String channel);
 }

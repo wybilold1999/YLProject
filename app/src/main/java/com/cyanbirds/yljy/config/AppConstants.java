@@ -72,4 +72,6 @@ public class AppConstants {
 
 	public static int CHAT_LIMIT = 0;
 
+	public static boolean IS_SHOW_WECHAT_LOGO;
+
 }

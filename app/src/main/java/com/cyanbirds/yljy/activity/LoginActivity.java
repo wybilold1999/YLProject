@@ -15,6 +15,7 @@ import com.cyanbirds.yljy.activity.base.BaseActivity;
 import com.cyanbirds.yljy.config.AppConstants;
 import com.cyanbirds.yljy.config.ValueKey;
 import com.cyanbirds.yljy.entity.ClientUser;
+import com.cyanbirds.yljy.entity.ShowClient;
 import com.cyanbirds.yljy.eventtype.LocationEvent;
 import com.cyanbirds.yljy.eventtype.WeinXinEvent;
 import com.cyanbirds.yljy.helper.IMChattingHelper;
@@ -93,7 +94,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         forgetPwd = (TextView) findViewById(R.id.forget_pwd);
         weiXinLogin = (ImageView) findViewById(R.id.weixin_login);
         qqLogin = (ImageView) findViewById(R.id.qq_login);
-
+        if (AppConstants.IS_SHOW_WECHAT_LOGO) {
+            weiXinLogin.setVisibility(View.VISIBLE);
+        } else {
+            weiXinLogin.setVisibility(View.GONE);
+        }
     }
 
     private void setupEvent() {
@@ -167,6 +172,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     public void weiXinLogin(WeinXinEvent event) {
         ProgressDialogUtils.getInstance(LoginActivity.this).show(R.string.dialog_request_login);
         new WXLoginTask().request(event.code, channelId, mCurrrentCity);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getPermission(ShowClient showClient) {
+        if (showClient.isShowGold) {
+            weiXinLogin.setVisibility(View.VISIBLE);
+        } else {
+            weiXinLogin.setVisibility(View.GONE);
+        }
     }
 
     class WXLoginTask extends WXLoginRequest {

@@ -108,7 +108,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         qqLogin = (ImageView) findViewById(R.id.qq_login);
         mSelectMan = (ImageView) findViewById(R.id.select_man);
         mSelectLady = (ImageView) findViewById(R.id.select_lady);
-
+        if (AppConstants.IS_SHOW_WECHAT_LOGO) {
+            weiXinLogin.setVisibility(View.VISIBLE);
+        } else {
+            weiXinLogin.setVisibility(View.GONE);
+        }
     }
 
     private void setupEvent() {

@@ -18,11 +18,14 @@ import com.amap.api.location.AMapLocationListener;
 import com.cyanbirds.yljy.CSApplication;
 import com.cyanbirds.yljy.R;
 import com.cyanbirds.yljy.activity.base.BaseActivity;
+import com.cyanbirds.yljy.config.AppConstants;
 import com.cyanbirds.yljy.config.ValueKey;
 import com.cyanbirds.yljy.entity.CityInfo;
+import com.cyanbirds.yljy.entity.ShowClient;
 import com.cyanbirds.yljy.eventtype.LocationEvent;
 import com.cyanbirds.yljy.manager.AppManager;
 import com.cyanbirds.yljy.net.request.GetCityInfoRequest;
+import com.cyanbirds.yljy.net.request.GetPermissionRequest;
 import com.cyanbirds.yljy.net.request.UploadCityInfoRequest;
 import com.cyanbirds.yljy.utils.PreferencesUtils;
 import com.umeng.analytics.MobclickAgent;
@@ -62,6 +65,7 @@ public class EntranceActivity extends BaseActivity implements AMapLocationListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance);
         ButterKnife.bind(this);
+        new GetPermission().request();
         saveFirstLauncher();
         setupViews();
         new GetCityInfoTask().request();
@@ -86,6 +90,21 @@ public class EntranceActivity extends BaseActivity implements AMapLocationListen
             PreferencesUtils.setIsFirstLauncher(this, false);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    class GetPermission extends GetPermissionRequest {
+
+        @Override
+        public void onPostExecute(ShowClient showClient) {
+            if (showClient != null) {
+                AppConstants.IS_SHOW_WECHAT_LOGO = showClient.isShowGold;
+                EventBus.getDefault().post(showClient);
+            }
+        }
+
+        @Override
+        public void onErrorExecute(String error) {
         }
     }
 

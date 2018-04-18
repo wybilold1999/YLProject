@@ -119,17 +119,17 @@ public class PreferencesUtils {
 	/** 纬度*/
 	public static final String SETTINGS_LONGITUDE = "com.cyanbird.tanlove_longitude";
 	/** 是否有领取话费的活动*/
-	public static final String SETTINGS_IS_HAS_GET_FARE_ACTIVITY = "com.cyanbirds.tanlove_is_has_get_fare_activity";
+	public static final String SETTINGS_IS_HAS_GET_FARE_ACTIVITY = "com.cyanbirds.yljy_is_has_get_fare_activity";
 	/** 购买的是多少钱的vip*/
-	public static final String SETTINGS_WHICH_VIP = "com.cyanbirds.tanlove_which_vip";
+	public static final String SETTINGS_WHICH_VIP = "com.cyanbirds.yljy_which_vip";
 	/** 登录的次数*/
-	public static final String SETTINGS_LOGIN_COUNT = "com.cyanbirds.tanlove_login_count";
+	public static final String SETTINGS_LOGIN_COUNT = "com.cyanbirds.yljy_login_count";
 	/** 该月是否可以领取话费*/
-	public static final String SETTINGS_IS_CAN_GET_FARE = "com.cyanbirds.tanlove_is_can_get_fare";
+	public static final String SETTINGS_IS_CAN_GET_FARE = "com.cyanbirds.yljy_is_can_get_fare";
 	/** 个推token*/
-	public static final String SETTINGS_GT_TOKEN = "com.cyanbirds.tanlove_gt_token";
+	public static final String SETTINGS_GT_TOKEN = "com.cyanbirds.yljy_gt_token";
 	/** 信鸽token*/
-	public static final String SETTINGS_XG_TOKEN = "com.cyanbirds.tanlove_xg_token";
+	public static final String SETTINGS_XG_TOKEN = "com.cyanbirds.yljy_xg_token";
 
 	/**
 	 * 获取RL账号
