@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ff8585</color>
-    <color name="colorPrimaryDark">#ff7d7d</color>
-    <color name="colorAccent">#ff7d7d</color>
+    <color name="colorPrimary">#c94b2e</color>
+    <color name="colorPrimaryDark">#c94b2e</color>
+    <color name="colorAccent">#c93b1b</color>
 
     <color name="tab_checked">@color/colorPrimary</color>
     <color name="tab_unchecked">#757575</color>
@@ -10,7 +10,7 @@
     <!-- 图片选择背景 -->
     <color name="image_selected_color">#7f000000</color>
 
-    <color name="color_theme">#ef9a9a</color>
+    <color name="color_theme">#c94b2e</color>
     <!-- 分割线背景 -->
     <color name="divider_color">#E1E1E1</color>
     <color name="tabhost_color">#F3F3F3</color>

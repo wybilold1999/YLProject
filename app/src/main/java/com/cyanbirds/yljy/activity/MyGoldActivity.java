@@ -166,6 +166,12 @@ public class MyGoldActivity extends BaseActivity {
 		mPayType = AppConstants.ALI_PAY_PLATFORM;
 		mSelectAlipay.setChecked(true);
 		mSelectWechatpay.setChecked(false);
+
+		if (AppManager.getClientUser().isShowLovers) {
+			mPayLay.setVisibility(View.VISIBLE);
+		} else {
+			mPayLay.setVisibility(View.GONE);
+		}
 	}
 
 	@OnClick({R.id.btn_pay, R.id.select_alipay, R.id.alipay_lay, R.id.select_wechatpay, R.id.wechat_lay})

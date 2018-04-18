@@ -137,7 +137,7 @@
     </string-array>
     <string-array name="quit_items">
         <item>退出当前账号</item>
-        <item>关闭探爱</item>
+        <item>关闭约恋交友</item>
     </string-array>
     <string-array name="login_history_more">
         <item>切换账号</item>

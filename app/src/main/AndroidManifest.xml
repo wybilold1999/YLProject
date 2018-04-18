@@ -641,13 +641,13 @@
         //====================个推推送开始=================================
         <meta-data
             android:name="PUSH_APPID"
-            android:value="4WpTNO2gsf5iity7PwrJB3" />
+            android:value="ykVlXHsHqh5tpTYyNw1G7" />
         <meta-data
             android:name="PUSH_APPKEY"
-            android:value="tyilVg8U116hS2zluPlpj2" />
+            android:value="aj0nYIiQsY6Kc8awZI0Vw9" />
         <meta-data
             android:name="PUSH_APPSECRET"
-            android:value="DDjgg742SSABZehowO37X9" />
+            android:value="CD57Lx44i67011ZAwjOuE6" />
 
         <!-- 配置SDK核心服务 -->
         <service
