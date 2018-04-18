@@ -48,6 +48,7 @@ public class WXLoginRequest extends ResultPostExecute<ClientUser> {
 		params.put("latitude", PreferencesUtils.getLatitude(CSApplication.getInstance()));
 		params.put("longitude", PreferencesUtils.getLongitude(CSApplication.getInstance()));
 		params.put("loginTime", String.valueOf(PreferencesUtils.getLoginTime(CSApplication.getInstance())));
+		params.put("clientName", "yljy");
 		Call<ResponseBody> call = AppManager.getUserService().wxLogin(AppManager.getClientUser().sessionId, params);
 		call.enqueue(new Callback<ResponseBody>() {
 			@Override

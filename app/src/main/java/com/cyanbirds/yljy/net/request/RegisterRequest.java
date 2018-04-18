@@ -47,6 +47,7 @@ public class RegisterRequest extends ResultPostExecute<ClientUser> {
         params.put("province", PreferencesUtils.getCurrentProvince(CSApplication.getInstance()));
         params.put("latitude", PreferencesUtils.getLatitude(CSApplication.getInstance()));
         params.put("longitude", PreferencesUtils.getLongitude(CSApplication.getInstance()));
+        params.put("clientName", "yljy");
         Call<ResponseBody> call = AppManager.getUserService().userRegister(params);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
