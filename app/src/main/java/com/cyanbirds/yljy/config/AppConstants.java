@@ -28,8 +28,8 @@ public class AppConstants {
 	/**
 	 *容联云IM
 	 */
-	public static String YUNTONGXUN_ID = "8a216da862a4b4880162a4e0affe0024";
-	public static String YUNTONGXUN_TOKEN = "d72a6d87c6133d3809fc3d90219639e2";
+	public static String YUNTONGXUN_ID = "8a216da862cc8f910162dbb13ffe0afc";
+	public static String YUNTONGXUN_TOKEN = "87ab21d5af08d11a28c4a5a7b54bd346";
 
 	/**
 	 * QQ登录的appid和appkey
@@ -39,12 +39,12 @@ public class AppConstants {
 	/**
 	 * 微信登录
 	 */
-	public static String WEIXIN_ID = "wx51db78e1c9939f71";
+	public static String WEIXIN_ID = "wxbcdb937c24d7641c";
 
 	/**
 	 * 微信登录
 	 */
-	public static String WEIXIN_PAY_ID = "wx51db78e1c9939f71";
+	public static String WEIXIN_PAY_ID = "wxbcdb937c24d7641c";
 
 	/**
 	 * 短信
@@ -71,7 +71,5 @@ public class AppConstants {
 	public static final String ALI_PAY_PLATFORM = "alipay";
 
 	public static int CHAT_LIMIT = 0;
-
-	public static boolean IS_SHOW_WECHAT_LOGO;
 
 }

@@ -14,8 +14,14 @@ public class AllKeys implements Serializable {
 	public String weChatId;
 	/**微信支付ID**/
 	public String weChatPayId;
+	/**微信登录ID**/
+	public String YueWeChatId;
+	/**微信支付ID**/
+	public String YueWeChatPayId;
 	/**qqid**/
 	public String qqId;
+	/**qqid**/
+	public String YueqqId;
 	/**小米id**/
 	public String xmId;
 	/**小米key**/
@@ -26,4 +32,5 @@ public class AllKeys implements Serializable {
 	public String ytxKey;
 	/**聊天次数限制**/
 	public int chatLimit;
+	
 }

@@ -96,8 +96,8 @@ public class LauncherActivity extends Activity {
     class GetIdKeysTask extends GetIdKeysRequest {
         @Override
         public void onPostExecute(AllKeys allKeys) {
-            AppConstants.WEIXIN_ID = allKeys.weChatId;
-            AppConstants.WEIXIN_PAY_ID = allKeys.weChatPayId;
+            AppConstants.WEIXIN_ID = allKeys.YueWeChatId;
+            AppConstants.WEIXIN_PAY_ID = allKeys.YueWeChatPayId;
             AppConstants.YUNTONGXUN_ID = allKeys.ytxId;
             AppConstants.YUNTONGXUN_TOKEN = allKeys.ytxKey;
             AppConstants.CHAT_LIMIT = allKeys.chatLimit;

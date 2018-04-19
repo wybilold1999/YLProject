@@ -94,11 +94,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         forgetPwd = (TextView) findViewById(R.id.forget_pwd);
         weiXinLogin = (ImageView) findViewById(R.id.weixin_login);
         qqLogin = (ImageView) findViewById(R.id.qq_login);
-        if (AppConstants.IS_SHOW_WECHAT_LOGO) {
-            weiXinLogin.setVisibility(View.VISIBLE);
-        } else {
-            weiXinLogin.setVisibility(View.GONE);
-        }
     }
 
     private void setupEvent() {

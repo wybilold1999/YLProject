@@ -167,12 +167,6 @@ public class DownloadPayFragment extends Fragment{
 		manager.setOrientation(LinearLayout.VERTICAL);
 		mRecyclerView.setLayoutManager(manager);
 		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
-		if (AppManager.getClientUser().isShowLovers) {
-			mPayLay.setVisibility(View.VISIBLE);
-		} else {
-			mPayLay.setVisibility(View.GONE);
-		}
 	}
 
 	private void setupEvent() {

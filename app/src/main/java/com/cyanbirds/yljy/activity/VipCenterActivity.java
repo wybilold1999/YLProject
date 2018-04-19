@@ -391,11 +391,7 @@ public class VipCenterActivity extends BaseActivity {
 		@Override
 		public void onItemClick(View view, int position) {
 			MemberBuy memberBuy = mAdapter.getItem(position);
-			if(AppManager.getClientUser().isShowLovers) {
-				showPayDialog(memberBuy);
-			} else {
-				new GetAliPayOrderInfoTask().request(memberBuy.id, AppConstants.ALI_PAY_PLATFORM);
-			}
+			showPayDialog(memberBuy);
 		}
 	};
 
