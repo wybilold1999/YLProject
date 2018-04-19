@@ -6,17 +6,18 @@ import android.text.TextUtils;
 import com.cyanbirds.yljy.CSApplication;
 import com.cyanbirds.yljy.R;
 import com.cyanbirds.yljy.db.base.DBManager;
-import com.cyanbirds.yljy.entity.Conversation;
-import com.cyanbirds.yljy.greendao.ConversationDao;
+import com.cyanbirds.yljy.entity.FConversation;
+import com.cyanbirds.yljy.eventtype.DataEvent;
+import com.cyanbirds.yljy.greendao.FConversationDao;
 import com.cyanbirds.yljy.listener.MessageChangedListener;
 import com.cyanbirds.yljy.manager.AppManager;
 import com.cyanbirds.yljy.net.request.DownloadFileRequest;
 import com.cyanbirds.yljy.utils.FileAccessorUtils;
-import com.cyanbirds.yljy.utils.FileUtils;
 import com.cyanbirds.yljy.utils.Md5Util;
 import com.yuntongxun.ecsdk.ECMessage;
 import com.yuntongxun.ecsdk.im.ECTextMessageBody;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.io.File;
@@ -24,30 +25,30 @@ import java.util.List;
 
 
 /**
- * 
- * @ClassName:ConversationSqlManager
+ *
+ * @ClassName:FConversationSqlManager
  * @Description:会话数据库管理
  * @author wangyb
  * @Date:2015年5月24日下午8:03:20
  *
  */
-public class ConversationSqlManager extends DBManager {
+public class FConversationSqlManager extends DBManager {
 
-	private static ConversationSqlManager mInstance;
-	private ConversationDao conversationDao;
+	private static FConversationSqlManager mInstance;
+	private FConversationDao conversationDao;
 	private Context mContext;
 
-	private ConversationSqlManager(Context context) {
+	private FConversationSqlManager(Context context) {
 		super(context);
 		mContext = context;
-		conversationDao = getDaoSession().getConversationDao();
+		conversationDao = getDaoSession().getFConversationDao();
 	}
 
-	public static ConversationSqlManager getInstance(Context context) {
+	public static FConversationSqlManager getInstance(Context context) {
 		if (mInstance == null) {
-			synchronized (ConversationSqlManager.class) {
+			synchronized (FConversationSqlManager.class) {
 				if (mInstance == null) {
-					mInstance = new ConversationSqlManager(context);
+					mInstance = new FConversationSqlManager(context);
 				}
 			}
 		}
@@ -60,13 +61,13 @@ public class ConversationSqlManager extends DBManager {
 	 * @return
 	 */
 	public int getAnalyticsUnReadConversation() {
-		List<Conversation> conversations = conversationDao.loadAll();
+		List<FConversation> conversations = conversationDao.loadAll();
 		if (conversations == null || conversations.size() == 0) {
 			return 0 ;
 		}
 		int total = 0;
 		for (int i = 0; i < conversations.size(); i++) {
-			Conversation c = conversations.get(i);
+			FConversation c = conversations.get(i);
 			total += c.unreadCount;
 		}
 		return total;
@@ -77,7 +78,7 @@ public class ConversationSqlManager extends DBManager {
 	 * @return
 	 */
 	public int getConversationUnReadNum() {
-		List<Conversation> conversations = conversationDao.loadAll();
+		List<FConversation> conversations = conversationDao.loadAll();
 		if (conversations == null || conversations.size() == 0) {
 			return 0 ;
 		}
@@ -90,29 +91,32 @@ public class ConversationSqlManager extends DBManager {
 		return total;
 	}
 
+
 	/**
 	 * 根据聊天对象的userid来查询会话
 	 * @return
 	 */
-	public Conversation queryConversationForByTalkerId(String talkerId) {
-		QueryBuilder<Conversation> qb = conversationDao.queryBuilder();
-		qb.where(ConversationDao.Properties.Talker.eq(talkerId));
+	public FConversation queryConversationForByTalkerId(String talkerId) {
+		QueryBuilder<FConversation> qb = conversationDao.queryBuilder();
+		qb.where(FConversationDao.Properties.Talker.eq(talkerId));
 		return qb.unique();
 	}
 
 	/**
-	 * 查询所有的会话
+	 * 根据真实用户的会话id查询所有的会话
 	 * @return
      */
-	public List<Conversation> queryConversations() {
-		return conversationDao.loadAll();
+	public List<FConversation> queryConversations(long realId) {
+		QueryBuilder<FConversation> qb = conversationDao.queryBuilder();
+		qb.where(FConversationDao.Properties.Rid.eq(realId)).orderDesc(FConversationDao.Properties.CreateTime);
+		return qb.list();
 	}
 
 	/**
 	 * 修改会话
 	 * @return
 	 */
-	public void updateConversation(Conversation conversation) {
+	public void updateConversation(FConversation conversation) {
 		if (conversation == null
 				|| TextUtils.isEmpty(String.valueOf(conversation.id))) {
 			return;
@@ -122,14 +126,24 @@ public class ConversationSqlManager extends DBManager {
 
 	/**
 	 * 删除所有会话
-	 * 
+	 *
 	 * @return
 	 */
 	public void deleteAllConversation() {
 		conversationDao.deleteAll();
 	}
 
-	public void deleteConversationById(Conversation conversation) {
+	/**
+	 * 删除真实用户对应的假用户id
+	 */
+	public void deleteAllConversationByRid(long rid) {
+		List<FConversation> list = queryConversations(rid);
+		if (list != null && !list.isEmpty()) {
+			conversationDao.deleteInTx(list);
+		}
+	}
+
+	public void deleteConversationById(FConversation conversation) {
 		conversationDao.delete(conversation);
 	}
 
@@ -139,15 +153,21 @@ public class ConversationSqlManager extends DBManager {
 	 * @param conversation
 	 * @return
 	 */
-	public long inserConversation(Conversation conversation) {
+	public long inserConversation(FConversation conversation) {
 		return conversationDao.insertOrReplace(conversation);
 	}
 
-	public long insertConversation(String userData, ECMessage ecMessage) {
+	/**
+	 *
+	 * @param rId 真实用户的会话id
+	 * @param userData
+	 * @param ecMessage
+     * @return
+     */
+	public long insertConversation(long rId, String userData, ECMessage ecMessage) {
 		String[] userInfos = userData.split(";");
 
 		String talker = "";
-		String sender = "";
 		String talkerName = "";
 		String portraitUrl = "";
 		boolean isSend = false;
@@ -155,28 +175,24 @@ public class ConversationSqlManager extends DBManager {
 			isSend = true;
 		}
 		if (isSend) {
-			talker = ecMessage.getTo();
-			talkerName = userInfos[0];
-			portraitUrl = userInfos[1];
-		} else {
 			talker = userInfos[0];
 			talkerName = userInfos[1];
 			portraitUrl = userInfos[2];
+		} else {
+			talker = userInfos[3];
+			talkerName = userInfos[4];
+			portraitUrl = userInfos[5];
 		}
 		//根据talker去查询有没有对应的会话
-		Conversation conversation = queryConversationForByTalkerId(talker);
+		FConversation conversation = queryConversationForByTalkerId(talker);
 		if (null == conversation) {//没有会话
-			conversation = new Conversation();
+			conversation = new FConversation();
 		}
+		conversation.Rid = rId;
 		conversation.talker = talker;
 		conversation.talkerName = talkerName;
 		conversation.createTime = ecMessage.getMsgTime();
-		if (userInfos.length == 8) {
-			conversation.channel = userInfos[6];
-			conversation.city = userInfos[7];
-		} else {
-		}
-
+		conversation.faceUrl = portraitUrl;
 		if (!isSend && !"com.cyanbirds.yljy.activity.ChatActivity".equals(AppManager.getTopActivity(mContext))) {
 			conversation.unreadCount++;
 		}
@@ -210,6 +226,7 @@ public class ConversationSqlManager extends DBManager {
 		 * 通知会话内容的改变
 		 */
 		MessageChangedListener.getInstance().notifyMessageChanged(String.valueOf(id));
+		EventBus.getDefault().post(new DataEvent());
 		return id;
 	}
 
@@ -217,9 +234,9 @@ public class ConversationSqlManager extends DBManager {
 	 * 下载头像
 	 */
 	class DownloadPortraitTask extends DownloadFileRequest {
-		private Conversation mConversation;
+		private FConversation mConversation;
 
-		public DownloadPortraitTask(Conversation conversation) {
+		public DownloadPortraitTask(FConversation conversation) {
 			mConversation = conversation;
 		}
 
@@ -228,6 +245,7 @@ public class ConversationSqlManager extends DBManager {
 			mConversation.localPortrait = s;
 			updateConversation(mConversation);
 			MessageChangedListener.getInstance().notifyMessageChanged(String.valueOf(mConversation.id));
+			EventBus.getDefault().post(new DataEvent());
 		}
 
 		@Override

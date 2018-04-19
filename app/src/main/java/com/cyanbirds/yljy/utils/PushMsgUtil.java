@@ -101,12 +101,7 @@ public class PushMsgUtil {
 					}, 60000);
 				}
 			} else {
-				mHandler.post(new Runnable() {
-					@Override
-					public void run() {
-						handleConversation(pushMsgModel);
-					}
-				});
+				handleConversation(pushMsgModel);
 			}
 		}
 	}
@@ -139,7 +134,6 @@ public class PushMsgUtil {
 			conversation.talker = pushMsgModel.sender;
 			conversation.talkerName = pushMsgModel.senderName;
 			conversation.createTime = pushMsgModel.serverTime;
-			conversation.faceUrl = pushMsgModel.faceUrl;
 			conversation.unreadCount++;
 			long conversationId = ConversationSqlManager.getInstance(
 					CSApplication.getInstance()).inserConversation(conversation);

@@ -32,9 +32,8 @@ import com.cyanbirds.yljy.activity.PersonalInfoActivity;
 import com.cyanbirds.yljy.activity.PhotoViewActivity;
 import com.cyanbirds.yljy.activity.VipCenterActivity;
 import com.cyanbirds.yljy.config.ValueKey;
-import com.cyanbirds.yljy.db.ConversationSqlManager;
 import com.cyanbirds.yljy.db.IMessageDaoManager;
-import com.cyanbirds.yljy.entity.Conversation;
+import com.cyanbirds.yljy.entity.FConversation;
 import com.cyanbirds.yljy.entity.IMessage;
 import com.cyanbirds.yljy.eventtype.SnackBarEvent;
 import com.cyanbirds.yljy.manager.AppManager;
@@ -48,7 +47,6 @@ import com.cyanbirds.yljy.utils.ImageUtil;
 import com.cyanbirds.yljy.utils.LinkUtil;
 import com.cyanbirds.yljy.utils.Md5Util;
 import com.cyanbirds.yljy.utils.PreferencesUtils;
-import com.cyanbirds.yljy.utils.StringUtil;
 import com.cyanbirds.yljy.utils.ToastUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -69,7 +67,7 @@ public class ChatMessageAdapter extends
         RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static List<IMessage> mIMessages;
-    private static Conversation mConversation;
+    private static FConversation mConversation;
     /**
      * 需要显示时间的Item position
      */
@@ -77,7 +75,7 @@ public class ChatMessageAdapter extends
     private static Context mContext;
     private String redPkt[] = null;//红包数据结构:祝福语;金额
 
-    public ChatMessageAdapter(Context context, List<IMessage> messages, Conversation mConversation) {
+    public ChatMessageAdapter(Context context, List<IMessage> messages, FConversation mConversation) {
         mContext = context;
         mIMessages = messages;
         mShowTimePosition = new ArrayList<String>();
@@ -118,16 +116,10 @@ public class ChatMessageAdapter extends
                             .setBackgroundResource(R.drawable.left_bubble_selector);
                     textHolder.message_text.setTextColor(Color.BLACK);
 
-                    if(null != mConversation && !TextUtils.isEmpty(mConversation.localPortrait)){
+                    if(!TextUtils.isEmpty(mConversation.localPortrait)){
                         if (mConversation.localPortrait.startsWith("res")) {
                             textHolder.portrait.setImageURI(Uri.parse(mConversation.localPortrait));
                         } else {
-                            textHolder.portrait.setImageURI(Uri.parse("file://" + mConversation.localPortrait));
-                        }
-                    } else {
-                        mConversation = ConversationSqlManager.getInstance(mContext)
-                                .queryConversationForById(message.conversationId);
-                        if (null != mConversation) {
                             textHolder.portrait.setImageURI(Uri.parse("file://" + mConversation.localPortrait));
                         }
                     }
@@ -235,20 +227,13 @@ public class ChatMessageAdapter extends
                             }
                         }
                     }
-                    if(null != mConversation && !TextUtils.isEmpty(mConversation.localPortrait)){
+                    if(!TextUtils.isEmpty(mConversation.localPortrait)){
                         if (mConversation.localPortrait.startsWith("res")) {
                             imageHolder.portrait.setImageURI(Uri.parse(mConversation.localPortrait));
                         } else {
                             imageHolder.portrait.setImageURI(Uri.parse("file://" + mConversation.localPortrait));
                         }
-                    } else {
-                        mConversation = ConversationSqlManager.getInstance(mContext)
-                                .queryConversationForById(message.conversationId);
-                        if (null != mConversation) {
-                            imageHolder.portrait.setImageURI(Uri.parse("file://" + mConversation.localPortrait));
-                        }
                     }
-
                     RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) imageHolder.portrait
                             .getLayoutParams();
                     lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT,
@@ -306,16 +291,10 @@ public class ChatMessageAdapter extends
                 locationHolder.message_send_fail.setVisibility(View.GONE);
                 if (message.isSend == IMessage.MessageIsSend.RECEIVING) {
 
-                    if(null != mConversation && !TextUtils.isEmpty(mConversation.localPortrait)){
+                    if(!TextUtils.isEmpty(mConversation.localPortrait)){
                         if (mConversation.localPortrait.startsWith("res")) {
                             locationHolder.portrait.setImageURI(Uri.parse(mConversation.localPortrait));
                         } else {
-                            locationHolder.portrait.setImageURI(Uri.parse("file://" + mConversation.localPortrait));
-                        }
-                    } else {
-                        mConversation = ConversationSqlManager.getInstance(mContext)
-                                .queryConversationForById(message.conversationId);
-                        if (null != mConversation) {
                             locationHolder.portrait.setImageURI(Uri.parse("file://" + mConversation.localPortrait));
                         }
                     }
@@ -386,16 +365,10 @@ public class ChatMessageAdapter extends
                             .setBackgroundResource(R.drawable.left_bubble_selector);
                     voipViewHolder.message_text.setTextColor(Color.BLACK);
 
-                    if(null != mConversation && !TextUtils.isEmpty(mConversation.localPortrait)){
+                    if(!TextUtils.isEmpty(mConversation.localPortrait)){
                         if (mConversation.localPortrait.startsWith("res")) {
                             voipViewHolder.portrait.setImageURI(Uri.parse(mConversation.localPortrait));
                         } else {
-                            voipViewHolder.portrait.setImageURI(Uri.parse("file://" + mConversation.localPortrait));
-                        }
-                    } else {
-                        mConversation = ConversationSqlManager.getInstance(mContext)
-                                .queryConversationForById(message.conversationId);
-                        if (null != mConversation) {
                             voipViewHolder.portrait.setImageURI(Uri.parse("file://" + mConversation.localPortrait));
                         }
                     }
@@ -461,16 +434,10 @@ public class ChatMessageAdapter extends
                 redViewHolder.message_send_fail.setVisibility(View.GONE);
                 redViewHolder.progress_bar.setVisibility(View.GONE);
                 if (message.isSend == IMessage.MessageIsSend.RECEIVING) {
-                    if(null != mConversation && !TextUtils.isEmpty(mConversation.localPortrait)){
+                    if(!TextUtils.isEmpty(mConversation.localPortrait)){
                         if (mConversation.localPortrait.startsWith("res")) {
                             redViewHolder.portrait.setImageURI(Uri.parse(mConversation.localPortrait));
                         } else {
-                            redViewHolder.portrait.setImageURI(Uri.parse("file://" + mConversation.localPortrait));
-                        }
-                    } else {
-                        mConversation = ConversationSqlManager.getInstance(mContext)
-                                .queryConversationForById(message.conversationId);
-                        if (null != mConversation) {
                             redViewHolder.portrait.setImageURI(Uri.parse("file://" + mConversation.localPortrait));
                         }
                     }
@@ -496,7 +463,8 @@ public class ChatMessageAdapter extends
                                 } else if (AppManager.getClientUser().gold_num < 100) {
                                     showGoldDialog(mContext.getResources().getString(R.string.no_gold_un_receive_rpt));
                                 } else if (message.isRead){
-                                    ToastUtil.showMessage(R.string.receive_pkt);
+//                                    ToastUtil.showMessage(R.string.cancel_red_packet);
+                                    ToastUtil.showMessage("红包已领");
                                 } else {
                                     float count = PreferencesUtils.getMyMoney(mContext);
                                     float moneyPkt = Float.parseFloat(redPkt[1]);
@@ -512,7 +480,8 @@ public class ChatMessageAdapter extends
                                 } else if (AppManager.getClientUser().gold_num < 100) {
                                     showGoldDialog(mContext.getResources().getString(R.string.no_gold_un_receive_rpt));
                                 } else if (message.isRead){
-                                    ToastUtil.showMessage(R.string.receive_pkt);
+//                                    ToastUtil.showMessage(R.string.cancel_red_packet);
+                                    ToastUtil.showMessage("红包已领");
                                 } else {
                                     float count = PreferencesUtils.getMyMoney(mContext);
                                     float moneyPkt = Float.parseFloat(redPkt[1]);
@@ -565,9 +534,14 @@ public class ChatMessageAdapter extends
                                 } else if (AppManager.getClientUser().gold_num < 100) {
                                     showGoldDialog(mContext.getResources().getString(R.string.no_gold_un_cancel_red_packet));
                                 } else if (message.isRead) {
-                                    ToastUtil.showMessage(R.string.revoked_pkt);
+                                    ToastUtil.showMessage(R.string.cancel_red_packet_tips);
                                 } else {
-                                    showRevokePkt(message);//撤销红包对话框
+                                    float count = PreferencesUtils.getMyMoney(mContext);
+                                    PreferencesUtils.setMyMoney(mContext, count + Float.parseFloat(redPkt[1]));
+                                    EventBus.getDefault().post(new SnackBarEvent("撤回的红包已存入您的钱包"));
+                                    message.isRead = true;
+                                    IMessageDaoManager.getInstance(mContext).updateIMessage(message);
+                                    notifyDataSetChanged();
                                 }
                             } else {
                                 if (!AppManager.getClientUser().is_vip) {
@@ -575,9 +549,14 @@ public class ChatMessageAdapter extends
                                 } else if (AppManager.getClientUser().gold_num < 100) {
                                     showGoldDialog(mContext.getResources().getString(R.string.no_gold_un_cancel_red_packet));
                                 } else if (message.isRead) {
-                                    ToastUtil.showMessage(R.string.revoked_pkt);
+                                    ToastUtil.showMessage(R.string.cancel_red_packet_tips);
                                 } else {
-                                    showRevokePkt(message);//撤销红包对话框
+                                    float count = PreferencesUtils.getMyMoney(mContext);
+                                    PreferencesUtils.setMyMoney(mContext, count + Float.parseFloat(redPkt[1]));
+                                    EventBus.getDefault().post(new SnackBarEvent("撤回的红包已存入您的钱包"));
+                                    message.isRead = true;
+                                    IMessageDaoManager.getInstance(mContext).updateIMessage(message);
+                                    notifyDataSetChanged();
                                 }
                             }
                         }
@@ -672,12 +651,12 @@ public class ChatMessageAdapter extends
      * 设置显示时间
      */
     private void setChatTime(TextView chat_time, long time, boolean showTimer) {
-        /*chat_time.setVisibility(View.GONE);
+        chat_time.setVisibility(View.GONE);
         if (showTimer) {
             chat_time.setVisibility(View.VISIBLE);
             chat_time.setText(DateUtil.getDateString(time,
                     DateUtil.SHOW_TYPE_CALL_LOG).trim());
-        }*/
+        }
     }
 
 
@@ -1028,33 +1007,6 @@ public class ChatMessageAdapter extends
                 dialog.dismiss();
                 Intent intent = new Intent(mContext, MyGoldActivity.class);
                 mContext.startActivity(intent);
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.show();
-    }
-
-    /**
-     * 撤销红包对话框
-     */
-    private void showRevokePkt(final IMessage message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setMessage(mContext.getResources().getString(R.string.revoke_pkt));
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                float count = PreferencesUtils.getMyMoney(mContext);
-                PreferencesUtils.setMyMoney(mContext, count + Float.parseFloat(redPkt[1]));
-                EventBus.getDefault().post(new SnackBarEvent("撤回的红包已存入您的钱包"));
-                message.isRead = true;
-                IMessageDaoManager.getInstance(mContext).updateIMessage(message);
-                notifyDataSetChanged();
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

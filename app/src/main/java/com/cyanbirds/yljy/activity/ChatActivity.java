@@ -49,13 +49,12 @@ import com.cyanbirds.yljy.adapter.ChatEmoticonsAdapter;
 import com.cyanbirds.yljy.adapter.ChatEmoticonsAdapter.OnEmojiItemClickListener;
 import com.cyanbirds.yljy.adapter.ChatMessageAdapter;
 import com.cyanbirds.yljy.adapter.PagerGridAdapter;
-import com.cyanbirds.yljy.config.AppConstants;
 import com.cyanbirds.yljy.config.ValueKey;
-import com.cyanbirds.yljy.db.ConversationSqlManager;
 import com.cyanbirds.yljy.db.IMessageDaoManager;
 import com.cyanbirds.yljy.entity.ClientUser;
-import com.cyanbirds.yljy.entity.Conversation;
 import com.cyanbirds.yljy.entity.Emoticon;
+import com.cyanbirds.yljy.entity.ExpressionGroup;
+import com.cyanbirds.yljy.entity.FConversation;
 import com.cyanbirds.yljy.entity.IMessage;
 import com.cyanbirds.yljy.eventtype.SnackBarEvent;
 import com.cyanbirds.yljy.helper.IMChattingHelper;
@@ -72,7 +71,6 @@ import com.cyanbirds.yljy.utils.EmoticonUtil;
 import com.cyanbirds.yljy.utils.FileAccessorUtils;
 import com.cyanbirds.yljy.utils.FileUtils;
 import com.cyanbirds.yljy.utils.ImageUtil;
-import com.cyanbirds.yljy.utils.PreferencesUtils;
 import com.cyanbirds.yljy.utils.ToastUtil;
 import com.umeng.analytics.MobclickAgent;
 
@@ -93,8 +91,8 @@ import java.util.List;
  * @email 395044952@qq.com
  */
 public class ChatActivity extends BaseActivity implements OnMessageReportCallback, OnClickListener,
-		OnEmojiItemClickListener, OnFileProgressChangedListener,
-		OnRefreshListener, OnMessageStatusReport {
+        OnEmojiItemClickListener, OnFileProgressChangedListener,
+        OnRefreshListener, OnMessageStatusReport {
 	private RecyclerView mMessageRecyclerView;
 	private ChatMessageAdapter mMessageAdapter;
 	private ImageView openCamera;
@@ -117,11 +115,13 @@ public class ChatActivity extends BaseActivity implements OnMessageReportCallbac
 	private Uri mPhotoOnSDCardUri;
 
 	private ClientUser mClientUser;
-	private Conversation mConversation;
+	private FConversation mConversation;
+	private String mRealId;//真实用户的用户id
 
 	private List<IMessage> mIMessages;
 	private List<GridView> mChatEmoticonsGridView;
 	private LinearLayoutManager mLinearLayoutManager;
+	private List<ExpressionGroup> mExpressionGroups;
 
 	/**
 	 * 消息分页条数
@@ -222,19 +222,6 @@ public class ChatActivity extends BaseActivity implements OnMessageReportCallbac
 		layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 		mEmoticonRecyclerview.setLayoutManager(layoutManager);
 
-		if (!AppManager.getClientUser().isShowVip) {
-			openCamera.setVisibility(View.GONE);
-			openAlbums.setVisibility(View.GONE);
-			openLocation.setVisibility(View.GONE);
-			redPacket.setVisibility(View.GONE);
-			openEmotion.setVisibility(View.GONE);
-		} else {
-			openCamera.setVisibility(View.VISIBLE);
-			openAlbums.setVisibility(View.VISIBLE);
-			openLocation.setVisibility(View.VISIBLE);
-			redPacket.setVisibility(View.VISIBLE);
-			openEmotion.setVisibility(View.VISIBLE);
-		}
 	}
 
 	private void setupEvent() {
@@ -310,11 +297,12 @@ public class ChatActivity extends BaseActivity implements OnMessageReportCallbac
 			redPacket.setVisibility(View.GONE);
 		}
 		mClientUser = (ClientUser) getIntent().getSerializableExtra(ValueKey.USER);
-		if (mClientUser != null) {
+		mRealId = getIntent().getStringExtra(ValueKey.USER_ID);
+		/*if (mClientUser != null) {
 			mConversation = ConversationSqlManager.getInstance(this)
 					.queryConversationForByTalkerId(mClientUser.userId);
-		}
-
+		}*/
+		mConversation = (FConversation) getIntent().getSerializableExtra(ValueKey.CONVERSATION);
 		initEmoticon();
 		initEmotionUI();
 		mIMessages = new ArrayList<>();
@@ -471,33 +459,32 @@ public class ChatActivity extends BaseActivity implements OnMessageReportCallbac
 				break;
 			case R.id.tool_view_input_text:
 				if (AppManager.getClientUser().isShowVip) {
-					if (!TextUtils.isEmpty(mContentInput.getText().toString())) {
-						if (AppManager.getClientUser().is_vip) {
-							if (AppManager.getClientUser().isShowGold && AppManager.getClientUser().gold_num  < 101) {
-								showGoldDialog();
-							} else {
+					if (AppManager.getClientUser().is_vip) {
+						if (AppManager.getClientUser().gold_num  < 101) {
+							showGoldDialog();
+						} else {
+							if (!TextUtils.isEmpty(mContentInput.getText().toString())) {
 								if (null != IMChattingHelper.getInstance().getChatManager()) {
-									sendTextMsg();
+									IMChattingHelper.getInstance().sendTextMsg(mConversation.Rid, mRealId,
+											mClientUser, mContentInput.getText().toString());
+									mContentInput.setText("");
 								}
 							}
-						} else {
-							showBeyondChatLimitDialog();
 						}
+					} else {
+						showVipDialog();
 					}
 				} else {
-					if (!TextUtils.isEmpty(mContentInput.getText().toString()) &&
-							null != IMChattingHelper.getInstance().getChatManager()) {
-						sendTextMsg();
+					if (!TextUtils.isEmpty(mContentInput.getText().toString())) {
+						if (null != IMChattingHelper.getInstance().getChatManager()) {
+							IMChattingHelper.getInstance().sendTextMsg(mConversation.Rid, mRealId,
+									mClientUser, mContentInput.getText().toString());
+							mContentInput.setText("");
+						}
 					}
 				}
 				break;
 		}
-	}
-
-	private void sendTextMsg() {
-		IMChattingHelper.getInstance().sendTextMsg(
-				mClientUser, mContentInput.getText().toString());
-		mContentInput.setText("");
 	}
 
 	private void showVipDialog() {
@@ -656,7 +643,7 @@ public class ChatActivity extends BaseActivity implements OnMessageReportCallbac
 		} else if (resultCode == RESULT_OK && requestCode == ALBUMS_RESULT) {
 			if (AppManager.getClientUser().isShowVip) {
 				if (AppManager.getClientUser().is_vip) {
-					if (AppManager.getClientUser().isShowGold && AppManager.getClientUser().gold_num  < 101) {
+					if (AppManager.getClientUser().gold_num  < 101) {
 						showGoldDialog();
 					} else {
 						Uri uri = data.getData();
@@ -670,7 +657,7 @@ public class ChatActivity extends BaseActivity implements OnMessageReportCallbac
 								fileUrl = extSdCardPath + File.separator + FileUtils.getPath(this, uri);
 							}
 							if (null != IMChattingHelper.getInstance().getChatManager()) {
-								IMChattingHelper.getInstance().sendImgMsg(mClientUser, fileUrl);
+								IMChattingHelper.getInstance().sendImgMsg(mConversation.Rid, mRealId, mClientUser, fileUrl);
 							}
 						}
 					}
@@ -689,7 +676,7 @@ public class ChatActivity extends BaseActivity implements OnMessageReportCallbac
 						fileUrl = extSdCardPath + File.separator + FileUtils.getPath(this, uri);
 					}
 					if (null != IMChattingHelper.getInstance().getChatManager()) {
-						IMChattingHelper.getInstance().sendImgMsg(mClientUser, fileUrl);
+						IMChattingHelper.getInstance().sendImgMsg(mConversation.Rid, mRealId, mClientUser, fileUrl);
 					}
 				}
 			}
@@ -697,7 +684,7 @@ public class ChatActivity extends BaseActivity implements OnMessageReportCallbac
 				&& requestCode == PREVIEW_IMAGE_RESULT) {
 			Uri uri = data.getData();
             String imgUrl = ImageUtil.compressImage(uri.getPath(), FileAccessorUtils.IMESSAGE_IMAGE);
-			IMChattingHelper.getInstance().sendImgMsg(mClientUser, imgUrl);
+			IMChattingHelper.getInstance().sendImgMsg(mConversation.Rid, mRealId, mClientUser, imgUrl);
 		} else if (resultCode == RESULT_OK
 				&& requestCode == SHARE_LOCATION_RESULT) {
 			double latitude = data.getDoubleExtra(ValueKey.LATITUDE, 0);
@@ -705,13 +692,13 @@ public class ChatActivity extends BaseActivity implements OnMessageReportCallbac
 			String address = data.getStringExtra(ValueKey.ADDRESS);
 			String imagePath = data.getStringExtra(ValueKey.IMAGE_URL);
 			if (null != IMChattingHelper.getInstance().getChatManager()) {
-				IMChattingHelper.getInstance().sendLocationMsg(mClientUser, latitude, longitude,
+				IMChattingHelper.getInstance().sendLocationMsg(mConversation.Rid, mRealId, mClientUser, latitude, longitude,
 						address, imagePath);
 			}
 		} else if (resultCode == RESULT_OK && requestCode == SEND_RED_PACKET) {
 			ToastUtil.showMessage("已发送");
 			if (null != IMChattingHelper.getInstance().getChatManager()) {
-				IMChattingHelper.getInstance().sendRedPacketMsg(
+				IMChattingHelper.getInstance().sendRedPacketMsg(mConversation.Rid, mRealId,
 						mClientUser, data.getStringExtra(ValueKey.DATA));
 			}
 		}
@@ -985,45 +972,17 @@ public class ChatActivity extends BaseActivity implements OnMessageReportCallbac
 		builder.show();
 	}
 
-	private void showBeyondChatLimitDialog() {
-		String message = "";
-		if (AppConstants.CHAT_LIMIT == 0) {
-			message = getResources().getString(R.string.un_send_msg);
-		} else {
-			message = getResources().getString(R.string.chat_count_zero_bak);
-		}
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(message);
-		builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-				Intent intent = new Intent(ChatActivity.this, VipCenterActivity.class);
-				startActivity(intent);
-			}
-		});
-		builder.setNegativeButton(R.string.until_single, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-			}
-		});
-		builder.show();
-	}
-
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void showSnackBar(SnackBarEvent event) {
-		if (!TextUtils.isEmpty(event.content)) {
-			Snackbar.make(findViewById(R.id.message_recycler_view), event.content, Snackbar.LENGTH_LONG)
-					.setActionTextColor(Color.RED)
-					.setAction("点击查看", new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							Intent intent = new Intent(ChatActivity.this, MoneyPacketActivity.class);
-							startActivity(intent);
-						}
-					}).show();
-		}
+		Snackbar.make(findViewById(R.id.message_recycler_view), event.content, Snackbar.LENGTH_LONG)
+				.setActionTextColor(Color.RED)
+				.setAction("点击查看", new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Intent intent = new Intent(ChatActivity.this, MoneyPacketActivity.class);
+						startActivity(intent);
+					}
+				}).show();
 	}
 }
 

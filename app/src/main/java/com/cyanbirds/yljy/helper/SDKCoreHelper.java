@@ -95,7 +95,7 @@ public class SDKCoreHelper implements ECDevice.InitListener , ECDevice.OnECDevic
     @Override
     public void onConnectState(ECDevice.ECConnectState state, ECError error) {
         if(state == ECDevice.ECConnectState.CONNECT_FAILED ){
-//            ToastUtil.showMessage("IM 连接失败="+error.errorCode);
+            ToastUtil.showMessage("IM 连接失败=" + error.errorCode);
             if(error.errorCode == SdkErrorCode.SDK_KICKED_OFF) {
                 //账号异地登陆
             } else {
@@ -104,7 +104,7 @@ public class SDKCoreHelper implements ECDevice.InitListener , ECDevice.OnECDevic
             return ;
         }
         else if(state == ECDevice.ECConnectState.CONNECT_SUCCESS) {
-//            ToastUtil.showMessage("IM 连接成功");
+            ToastUtil.showMessage("IM 连接成功");
             // 登陆成功
             mConnect = state;
         }

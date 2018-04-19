@@ -17,13 +17,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cyanbirds.yljy.R;
-import com.cyanbirds.yljy.activity.FConversationActivity;
-import com.cyanbirds.yljy.activity.PersonalInfoActivity;
+import com.cyanbirds.yljy.activity.ChatActivity;
 import com.cyanbirds.yljy.config.ValueKey;
 import com.cyanbirds.yljy.db.ConversationSqlManager;
 import com.cyanbirds.yljy.db.FConversationSqlManager;
 import com.cyanbirds.yljy.db.IMessageDaoManager;
+import com.cyanbirds.yljy.entity.ClientUser;
 import com.cyanbirds.yljy.entity.Conversation;
+import com.cyanbirds.yljy.entity.FConversation;
+import com.cyanbirds.yljy.listener.MessageChangedListener;
 import com.cyanbirds.yljy.listener.MessageUnReadListener;
 import com.cyanbirds.yljy.manager.NotificationManager;
 import com.cyanbirds.yljy.utils.DateUtil;
@@ -38,14 +40,16 @@ import java.util.List;
  * @datetime 2015-12-26 15:24 GMT+8
  * @email 395044952@qq.com
  */
-public class MessageAdapter extends
-        RecyclerView.Adapter<MessageAdapter.ViewHolder> {
+public class FMessageAdapter extends
+        RecyclerView.Adapter<FMessageAdapter.ViewHolder> {
 
-    private List<Conversation> mConversations;
+    private List<FConversation> mConversations;
     private Context mContext;
+    private Conversation mConversation;
 
-    public MessageAdapter(Context context, List<Conversation> mConversations) {
+    public FMessageAdapter(Context context, Conversation conversation, List<FConversation> mConversations) {
         this.mConversations = mConversations;
+        this.mConversation = conversation;
         this.mContext = context;
     }
 
@@ -56,7 +60,7 @@ public class MessageAdapter extends
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Conversation conversation = mConversations.get(position);
+        FConversation conversation = mConversations.get(position);
         if(!TextUtils.isEmpty(conversation.localPortrait)){
             if (conversation.localPortrait.startsWith("res://")) {//官方头像
                 holder.mPortrait.setImageURI(Uri.parse(conversation.localPortrait));
@@ -80,22 +84,12 @@ public class MessageAdapter extends
                         .valueOf(conversation.unreadCount));
             }
         }
-        if (!TextUtils.isEmpty(conversation.channel)) {
-            holder.mChannel.setText(Html.fromHtml(String.format(mContext.getResources().getString(R.string.channel), conversation.channel)));
-        } else {
-            holder.mChannel.setVisibility(View.GONE);
-        }
-        if (!TextUtils.isEmpty(conversation.city)) {
-            holder.mCity.setText(Html.fromHtml(String.format(mContext.getResources().getString(R.string.city), conversation.city)));
-        } else {
-            holder.mCity.setVisibility(View.GONE);
-        }
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.item_message, parent, false));
+                R.layout.item_f_message, parent, false));
     }
 
 
@@ -106,8 +100,6 @@ public class MessageAdapter extends
         TextView mTitle;
         TextView mUpdateTime;
         TextView mContent;
-        TextView mChannel;
-        TextView mCity;
         LinearLayout mItemMsg;
 
         public ViewHolder(View itemView) {
@@ -118,8 +110,6 @@ public class MessageAdapter extends
             mTitle = (TextView) itemView.findViewById(R.id.title);
             mUpdateTime = (TextView) itemView.findViewById(R.id.update_time);
             mContent = (TextView) itemView.findViewById(R.id.content);
-            mChannel = (TextView) itemView.findViewById(R.id.tv_channel);
-            mCity = (TextView) itemView.findViewById(R.id.tv_city);
             mItemMsg = (LinearLayout) itemView.findViewById(R.id.item_msg);
             mItemMsg.setOnClickListener(this);
             mItemMsg.setOnLongClickListener(this);
@@ -129,10 +119,31 @@ public class MessageAdapter extends
         public void onClick(View v) {
             int position = getAdapterPosition();
             if (mConversations.size() > position && position > -1) {
-                Conversation conversation = mConversations.get(position);
-                Intent intent = new Intent(mContext, FConversationActivity.class);
+                FConversation conversation = mConversations.get(position);
+                mConversation.unreadCount = mConversation.unreadCount - conversation.unreadCount;
+                if (mConversation.unreadCount < 0) {
+                    mConversation.unreadCount = 0;
+                }
+                ConversationSqlManager.getInstance(mContext).updateConversation(mConversation);
+                MessageChangedListener.getInstance().notifyMessageChanged(null);//通知真实用户会话未读数减少
+
+                conversation.unreadCount = 0;
+                mConversations.set(position, conversation);
+                FConversationSqlManager.getInstance(mContext).updateConversation(conversation);
+                MessageUnReadListener.getInstance().notifyDataSetChanged(0);
+
+                Intent intent = new Intent(mContext, ChatActivity.class);
+                ClientUser clientUser = new ClientUser();
+                clientUser.face_local = conversation.localPortrait;
+                clientUser.user_name = conversation.talkerName;
+                clientUser.userId = conversation.talker;
+                clientUser.face_url = conversation.faceUrl;
+                intent.putExtra(ValueKey.USER, clientUser);
                 intent.putExtra(ValueKey.CONVERSATION, conversation);
+                intent.putExtra(ValueKey.USER_ID, mConversation.talker);
                 mContext.startActivity(intent);
+                mUnreadCount.setVisibility(View.GONE);
+                mRedPoint.setVisibility(View.GONE);
             }
         }
 
@@ -145,35 +156,25 @@ public class MessageAdapter extends
                                     mContext.getResources().getString(
                                             R.string.delete_conversation),
                                     mContext.getResources().getString(
-                                            R.string.delete_all_conversation),
-                                    mContext.getResources().getString(
-                                            R.string.check_personal_info)},
+                                            R.string.delete_all_conversation)},
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     switch (which) {
                                         case 0:
-                                            Conversation conversation = mConversations.get(position);
-                                            ConversationSqlManager.getInstance(mContext).deleteConversationById(conversation);
-                                            FConversationSqlManager.getInstance(mContext).deleteAllConversationByRid(conversation.id);
-                                            IMessageDaoManager.getInstance(mContext).deleteIMessageByConversationId(conversation.id);
-                                            mConversations.remove(conversation);
+                                            FConversationSqlManager.getInstance(mContext).deleteConversationById(mConversations.get(position));
+                                            IMessageDaoManager.getInstance(mContext).deleteIMessageByConversationId(mConversations.get(position).id);
+                                            mConversations.remove(position);
                                             notifyDataSetChanged();
                                             MessageUnReadListener.getInstance().notifyDataSetChanged(0);
                                             break;
                                         case 1:
-                                            ConversationSqlManager.getInstance(mContext).deleteAllConversation();
                                             FConversationSqlManager.getInstance(mContext).deleteAllConversation();
                                             IMessageDaoManager.getInstance(mContext).deleteAllIMessage();
                                             mConversations.clear();
                                             notifyDataSetChanged();
                                             MessageUnReadListener.getInstance().notifyDataSetChanged(0);
                                             NotificationManager.getInstance().cancelNotification();
-                                            break;
-                                        case 2:
-                                            Intent intent = new Intent(mContext, PersonalInfoActivity.class);
-                                            intent.putExtra(ValueKey.USER_ID, mConversations.get(position).talker);
-                                            mContext.startActivity(intent);
                                             break;
                                     }
                                     dialog.dismiss();
@@ -184,7 +185,8 @@ public class MessageAdapter extends
         }
     }
 
-    public void setConversations(List<Conversation> conversations){
+    public void setConversations(List<FConversation> conversations){
         this.mConversations = conversations;
+        this.notifyDataSetChanged();
     }
 }

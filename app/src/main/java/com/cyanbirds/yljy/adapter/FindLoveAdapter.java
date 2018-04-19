@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 /**
  * @author Cloudsoar(wangyb)
  * @datetime 2015-12-26 18:34 GMT+8
@@ -83,9 +82,6 @@ public class FindLoveAdapter extends
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (position < 0) {
-            return;
-        }
         if(holder instanceof ItemViewHolder){
             ClientUser clientUser = mClientUsers.get(position);
             if(clientUser == null){
@@ -101,16 +97,10 @@ public class FindLoveAdapter extends
             }
             itemViewHolder.marrayState.setText(clientUser.state_marry);
             itemViewHolder.constellation.setText(clientUser.constellation);
-            if (!TextUtils.isEmpty(mCurCity) && mCurIndex == 1) {
-                itemViewHolder.distance.setText("来自" + mCurCity);
-            } else if (null == clientUser.distance || Double.parseDouble(clientUser.distance) == 0.0) {
+            if (!TextUtils.isEmpty(clientUser.city)) {
                 itemViewHolder.distance.setText("来自" + clientUser.city);
             } else {
                 itemViewHolder.distance.setText(mFormat.format(Double.parseDouble(clientUser.distance)) + " km");
-            }
-            if (mCurIndex == 2 && !TextUtils.isEmpty(mCurCity) && !TextUtils.isEmpty(clientUser.distance)
-                    && Double.parseDouble(clientUser.distance) > 0.0) {
-                itemViewHolder.distance.setText("来自" + mCurCity);
             }
             itemViewHolder.signature.setText(clientUser.signature);
             if(clientUser.is_vip && AppManager.getClientUser().isShowVip){
@@ -151,7 +141,7 @@ public class FindLoveAdapter extends
     }
 
     public ClientUser getItem(int position){
-        if (mClientUsers == null || mClientUsers.size() < 1 || position < 0) {
+        if (mClientUsers == null || mClientUsers.size() < 1) {
             return null;
         }
         return mClientUsers == null ? null : mClientUsers.get(position);

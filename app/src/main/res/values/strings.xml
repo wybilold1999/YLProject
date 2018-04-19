@@ -262,6 +262,7 @@
     <string name="single_red_packet_more">单个红包金额最低%1$s元</string>
     <string name="check_red_packet">查看红包</string>
     <string name="cancel_red_packet">用户已将该红包撤回</string>
+    <string name="cancel_red_packet_tips">该红包已撤回</string>
     <string name="un_cancel_red_packet">您还不是会员,不能撤销发出去的红包,立即开通会员撤销红包？</string>
     <string name="un_cancel_red_packet_for_td">您还不是赚钱会员,不能撤销发出去的红包,立即开通赚钱会员撤销红包？</string>
     <string name="no_gold_un_cancel_red_packet">撤销红包需账户中金币数量大于100，您账户中金币数量暂时不足，立即购买金币来撤销红包？</string>
@@ -406,4 +407,7 @@
     <string name="bg_downloading">后台下载中...</string>
     <string name="no_check_tips">由于国家禁止泄漏用户隐私，所以微信号和QQ号暂时无法查看，敬请谅解；如有疑问可联系QQ客服2350635875咨询，谢谢！</string>
 
+    <string name="channel"><Data><![CDATA[渠道：<font color="#ff0000"><b>%1$s</b></font>]]></Data></string>
+    <string name="city"><Data><![CDATA[城市：<font color="#ff0000"><b>%1$s</b></font>]]></Data></string>
+    <string name="check_personal_info">查看用户详情</string>
 </resources>

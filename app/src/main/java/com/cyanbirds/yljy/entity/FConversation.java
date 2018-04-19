@@ -12,19 +12,26 @@ import java.io.Serializable;
 
 /**
  * 
- * @ClassName:Conversation
- * @Description:聊天会话
+ * @ClassName:FConversation
+ * @Description:假用户聊天会话
  * @author wangyb
  * @Date:2015年5月23日下午10:27:09
  *
  */
 @Entity
-public class Conversation implements Serializable{
+public class FConversation implements Serializable{
 	public static final long serialVersionUID = 1L;
 
 	/** id */
 	@Id(autoincrement = true)
 	public Long id;
+
+	/**
+	 * 真实用户的回话id
+	 */
+	@Property
+	@NotNull
+	public Long Rid;
 	/** 聊天对象 */
 	@Property
 	@NotNull
@@ -54,21 +61,16 @@ public class Conversation implements Serializable{
 	/** 本地头像地址 */
 	@Property
 	public String localPortrait;
-
-	/** 渠道 */
+	/** 头像地址 */
 	@Property
-	public String channel;
-
-	/** 城市 */
-	@Property
-	public String city;
-
-	@Generated(hash = 370152232)
-	public Conversation(Long id, @NotNull String talker,
-                        @NotNull String talkerName, @NotNull String content, int unreadCount,
-                        long createTime, int type, String localPortrait, String channel,
-                        String city) {
+	public String faceUrl;
+	
+	@Generated(hash = 728027401)
+	public FConversation(Long id, @NotNull Long Rid, @NotNull String talker,
+                         @NotNull String talkerName, @NotNull String content, int unreadCount,
+                         long createTime, int type, String localPortrait, String faceUrl) {
 		this.id = id;
+		this.Rid = Rid;
 		this.talker = talker;
 		this.talkerName = talkerName;
 		this.content = content;
@@ -76,71 +78,70 @@ public class Conversation implements Serializable{
 		this.createTime = createTime;
 		this.type = type;
 		this.localPortrait = localPortrait;
-		this.channel = channel;
-		this.city = city;
+		this.faceUrl = faceUrl;
 	}
-	@Generated(hash = 1893991898)
-	public Conversation() {
+	@Generated(hash = 86921042)
+	public FConversation() {
 	}
 	public Long getId() {
-					return this.id;
+		return this.id;
 	}
 	public void setId(Long id) {
-					this.id = id;
+		this.id = id;
 	}
 	public String getTalker() {
-					return this.talker;
+		return this.talker;
 	}
 	public void setTalker(String talker) {
-					this.talker = talker;
+		this.talker = talker;
 	}
 	public String getTalkerName() {
-					return this.talkerName;
+		return this.talkerName;
 	}
 	public void setTalkerName(String talkerName) {
-					this.talkerName = talkerName;
+		this.talkerName = talkerName;
 	}
 	public String getContent() {
-					return this.content;
+		return this.content;
 	}
 	public void setContent(String content) {
-					this.content = content;
+		this.content = content;
 	}
 	public int getUnreadCount() {
-					return this.unreadCount;
+		return this.unreadCount;
 	}
 	public void setUnreadCount(int unreadCount) {
-					this.unreadCount = unreadCount;
+		this.unreadCount = unreadCount;
 	}
 	public long getCreateTime() {
-					return this.createTime;
+		return this.createTime;
 	}
 	public void setCreateTime(long createTime) {
-					this.createTime = createTime;
+		this.createTime = createTime;
 	}
 	public int getType() {
-					return this.type;
+		return this.type;
 	}
 	public void setType(int type) {
-					this.type = type;
+		this.type = type;
 	}
 	public String getLocalPortrait() {
-					return this.localPortrait;
+		return this.localPortrait;
 	}
 	public void setLocalPortrait(String localPortrait) {
-					this.localPortrait = localPortrait;
+		this.localPortrait = localPortrait;
 	}
-	public String getChannel() {
-		return this.channel;
+	public Long getRid() {
+		return this.Rid;
 	}
-	public void setChannel(String channel) {
-		this.channel = channel;
+	public void setRid(Long Rid) {
+		this.Rid = Rid;
 	}
-	public String getCity() {
-		return this.city;
+	public String getFaceUrl() {
+		return this.faceUrl;
 	}
-	public void setCity(String city) {
-		this.city = city;
+	public void setFaceUrl(String faceUrl) {
+		this.faceUrl = faceUrl;
 	}
 
 
