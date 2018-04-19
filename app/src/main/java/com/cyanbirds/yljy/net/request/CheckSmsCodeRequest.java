@@ -34,6 +34,7 @@ public class CheckSmsCodeRequest extends ResultPostExecute<String> {
 		params.put("code", code);
 		params.put("type", String.valueOf(mPhoneType)); //0:注册  1:找回密码
 		params.put("device", "android");
+		params.put("clientName", "yljy");
 		Call<ResponseBody> call = AppManager.getUserService().checkSmsCode(AppManager.getClientUser().sessionId, params);
 		call.enqueue(new Callback<ResponseBody>() {
 			@Override
