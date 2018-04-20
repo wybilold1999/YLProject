@@ -97,8 +97,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/camera_icon_selector"
-                android:visibility="gone"/>
+                android:src="@drawable/camera_icon_selector"/>
             <ImageView
                 android:id="@+id/openAlbums"
                 android:layout_width="wrap_content"
@@ -106,8 +105,7 @@
                 android:clickable="true"
                 android:layout_marginLeft="20dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/picture_icon_selector"
-                android:visibility="gone"/>
+                android:src="@drawable/picture_icon_selector"/>
             <ImageView
                 android:id="@+id/openEmotion"
                 android:layout_width="wrap_content"
@@ -115,8 +113,7 @@
                 android:clickable="true"
                 android:layout_marginLeft="20dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/emotion_icon_selector"
-                android:visibility="gone"/>
+                android:src="@drawable/emotion_icon_selector"/>
             <ImageView
                 android:id="@+id/openLocation"
                 android:layout_width="wrap_content"
@@ -124,8 +121,7 @@
                 android:clickable="true"
                 android:layout_marginLeft="20dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/location_icon_selector"
-                android:visibility="gone"/>
+                android:src="@drawable/location_icon_selector"/>
             <ImageView
                 android:id="@+id/red_packet"
                 android:layout_width="wrap_content"
@@ -133,8 +129,7 @@
                 android:clickable="true"
                 android:layout_marginLeft="20dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/rpt_icon_selector"
-                android:visibility="gone"/>
+                android:src="@drawable/rpt_icon_selector"/>
         </LinearLayout>
 
         <LinearLayout
