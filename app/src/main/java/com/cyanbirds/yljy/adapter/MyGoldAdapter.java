@@ -89,6 +89,9 @@ public class MyGoldAdapter extends
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
+            if (position < 0) {
+                return;
+            }
             if (mOnItemClickListener != null) {
                 mOnItemClickListener.onItemClick(v, position);
             }

@@ -473,12 +473,8 @@ public class ChatActivity extends BaseActivity implements OnMessageReportCallbac
 				if (AppManager.getClientUser().isShowVip) {
 					if (!TextUtils.isEmpty(mContentInput.getText().toString())) {
 						if (AppManager.getClientUser().is_vip) {
-							if (AppManager.getClientUser().isShowGold && AppManager.getClientUser().gold_num  < 101) {
-								showGoldDialog();
-							} else {
-								if (null != IMChattingHelper.getInstance().getChatManager()) {
-									sendTextMsg();
-								}
+							if (null != IMChattingHelper.getInstance().getChatManager()) {
+								sendTextMsg();
 							}
 						} else {
 							showBeyondChatLimitDialog();
@@ -559,7 +555,9 @@ public class ChatActivity extends BaseActivity implements OnMessageReportCallbac
 	@Override
 	protected void onResume() {
 		super.onResume();
-		AppManager.currentChatTalker = mClientUser.userId;
+		if (mClientUser != null) {
+			AppManager.currentChatTalker = mClientUser.userId;
+		}
 		NotificationManager.getInstance().cancelNotification();
 		MobclickAgent.onPageStart(this.getClass().getName());
 		MobclickAgent.onResume(this);

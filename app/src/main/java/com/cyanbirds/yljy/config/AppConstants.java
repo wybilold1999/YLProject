@@ -13,7 +13,6 @@ public class AppConstants {
 	
 	public static final String BASE_URL = "http://119.23.144.11/WeYueLoveServer/";
 //	public static final String BASE_URL = "http://192.168.1.101/WeYueLoveServer/";
-//	public static final String BASE_URL = "http://10.0.109.239:8080/WeYueLoveServer/";
 
 	/**
 	 * 密码加密密匙
@@ -71,5 +70,9 @@ public class AppConstants {
 	public static final String ALI_PAY_PLATFORM = "alipay";
 
 	public static int CHAT_LIMIT = 0;
+
+	public static String BUGLY_ID = "19b07bcb44";
+
+
 
 }

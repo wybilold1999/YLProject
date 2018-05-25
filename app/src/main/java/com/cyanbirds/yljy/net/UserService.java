@@ -65,6 +65,10 @@ public interface UserService {
     Call<ResponseBody> getFindLoveInfo(@Header("token") String token, @FieldMap ArrayMap<String, String> params);
 
     @FormUrlEncoded
+    @POST("user/homeLoveList")
+    Call<ResponseBody> getHomeLoveList(@Header("token") String token, @FieldMap ArrayMap<String, String> params);
+
+    @FormUrlEncoded
     @POST("user/logoutLogin")
     Call<ResponseBody> userLogout(@Header("token") String token, @FieldMap ArrayMap<String, String> params);
 

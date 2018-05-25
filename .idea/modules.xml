@@ -4,8 +4,10 @@
     <modules>
       <module fileurl="file://E:\Android\AndroidProject\YueProject\TanProject.iml" filepath="E:\Android\AndroidProject\YueProject\TanProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/YLProject.iml" filepath="$PROJECT_DIR$/YLProject.iml" />
+      <module fileurl="file://E:\Android\AndroidProject\YLProject\YLProject.iml" filepath="E:\Android\AndroidProject\YLProject\YLProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://E:\Android\AndroidProject\YueProject\app\app.iml" filepath="E:\Android\AndroidProject\YueProject\app\app.iml" />
+      <module fileurl="file://E:\Android\AndroidProject\YLProject\app\app.iml" filepath="E:\Android\AndroidProject\YLProject\app\app.iml" />
     </modules>
   </component>
 </project>

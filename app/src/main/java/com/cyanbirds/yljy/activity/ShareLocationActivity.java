@@ -111,6 +111,9 @@ public class ShareLocationActivity extends BaseActivity implements
 		mAdapter = new PlaceListAdapter(mPoiLists, mSelId, mRecyclerView) {
 			@Override
 			public void onClick(int position) {
+				if (position < 0) {
+					return;
+				}
 				mAdapter.notifyItemChanged(mSelId, position);
 				mSelId = position;
 				PoiItem poiItem = mPoiLists.get(position);
