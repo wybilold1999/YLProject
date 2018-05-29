@@ -91,7 +91,8 @@
                     android:singleLine="true"
                     android:textColor="#BBBBBB"
                     android:textSize="12sp"
-                    android:text="12/20 11:09"/>
+                    android:text="12/20 11:09"
+                    android:visibility="gone"/>
             </LinearLayout>
 
             <LinearLayout
